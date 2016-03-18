@@ -19,39 +19,36 @@ if(isset($_GET['logout'])){
  
  <?php
  //check if the user is already logged in and has an active session
- $msg = '';
-//add !isset
+ 
 if(!isset($_SESSION['member_id'])){
 	//Redirect the browser to the profile editing page and kill this page.
 	
 	header("Location: login.php");
-	echo "<script>alert('Please Login before registering a property');</script>";
 	die();
 
-	
 }
 ?>
  
  
 <?php
- /*  if(isset($_POST['registerBtn'])){
+  if(isset($_POST['registerBtn'])){
 	include_once 'config/connection.php'; 
 	 
-	$query = "INSERT INTO property (address, street_name, postal_code, price, district, type, bedroom, bathroom, Pool, Laundry, Internet, Parking, Heat, Smoking, Wheelchair, Gym, Pets) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	$query = "INSERT INTO property (member_id, district, address, street_name, postal_code, type, price, bathroom, Pool, Laundry, Internet, Parking, AC, Heat, Gym, Pets, Smoking, Wheelchair, bedroom) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con ->prepare($query)) {
-		$stmt->bind_Param("issiisiiiiiiiiiii", $_POST['address'], $_POST['street_name'], $_POST['postal_code'], $_POST['price'], $_POST['district'], $_POST['type'], $_POST['bedroom'], $_POST['bathroom'], $_POST['Pool'], $_POST['Laundry'], $_POST['Internet'], $_POST['Parking'], $_POST['Heat'], $_POST['Smoking'], $_POST['Wheelchair'], $_POST['Gym'], $_POST['Pets']);
+		$stmt->bind_Param("issiisiiiiiiiiiii", $_SESSION['member_id'], $_POST['district'], $_POST['address'], $_POST['street_name'], $_POST['postal_code'], $_POST['type'], $_POST['price'], $_POST['bathroom'], $_POST['Pool'], $_POST['Laundry'], $_POST['Internet'], $_POST['Parking'], $_POST['AC'], $_POST['Heat'], $_POST['Gym'], $_POST['Pets'], $_POST['Smoking'], $_POST['Wheelchair'], $_POST['bedroom']);
 		$stmt->execute();
 		
 	//How do we insert the property_id? and what do we do about member_id (get from login?)
-	$_SESSION['property_id'] = $con->insert_id; //is that a function?
+	
 	header("Location: index.php");
 	die();
 	}
 	else{
-		echo "insert query failed"
+		echo "insert query failed";
 	} 
 	
- } */
+ }
  
 ?>
 <div class="register-page">
@@ -172,6 +169,17 @@ if(!isset($_SESSION['member_id'])){
 		</label>
 	</div>
 
+	<div class="form-group">
+		<label>AC:
+			<input type="radio" name="AC"
+			<?php if (isset($AC) && $AC=="Yes") echo "checked";?>
+			value="1">Yes
+		<input type="radio" name="AC"
+		<?php if (isset($AC) && $AC="No") echo "checked";?>
+		value="0">No
+		</label>
+	</div>
+	
 	<div class="form-group">
 		<label>Smoking:
 			<input type="radio" name="Smoking"
