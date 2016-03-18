@@ -3,10 +3,10 @@
 $host = "localhost";
 $db_name = "qbnb";
 $username = "root";
-$password = "Jovocop1";
+$password = "cmpe332";
 
 try {
-    $con = new mysqli($host,$username,$password, $db_name);
+    $con = new mysqli($host, $username, $password, $db_name);
 	
 }
  
