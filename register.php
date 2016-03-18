@@ -19,11 +19,13 @@ if(isset($_GET['logout'])){
  
  <?php
  //check if the user is already logged in and has an active session
- 
+
+
 if(!isset($_SESSION['member_id'])){
 	//Redirect the browser to the profile editing page and kill this page.
 	
 	header("Location: login.php");
+
 	die();
 
 }
