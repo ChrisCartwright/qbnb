@@ -10,33 +10,21 @@
  <?php
  //check if the user clicked the logout link and set the logout GET parameter
 if(isset($_GET['logout'])){
+	console.log("after logout in search");
 	//Destroy the user's session.
 	$_SESSION['member_id']=null;
 	session_destroy();
 }
  ?>
- 
- 
- <?php
- //check if the user is already logged in and has an active session
 
-
-if(!isset($_SESSION['member_id'])){
-	//Redirect the browser to the profile editing page and kill this page.
-	
-	header("Location: login.php");
-
-	die();
-
-}
-?>
  
  
 <?php
-  if(isset($_POST['registerBtn'])){
+  if(isset($_POST['searchBtn'])){
 	include_once 'config/connection.php'; 
 	 
-	$query = "INSERT INTO property (member_id, district_id, address, street_name, postal_code, type, price, bathroom, Pool, Laundry, Internet, Parking, AC, Heat, Gym, Pets, Smoking, Wheelchair, bedroom) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	 console.log("hheklo");
+	/*$query = "INSERT INTO property (member_id, district_id, address, street_name, postal_code, type, price, bathroom, Pool, Laundry, Internet, Parking, AC, Heat, Gym, Pets, Smoking, Wheelchair, bedroom) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con ->prepare($query)) {
 		$stmt->bind_Param("issiisiiiiiiiiiii", $_SESSION['member_id'], $_POST['district'], $_POST['address'], $_POST['street_name'], $_POST['postal_code'], $_POST['type'], $_POST['price'], $_POST['bathroom'], $_POST['Pool'], $_POST['Laundry'], $_POST['Internet'], $_POST['Parking'], $_POST['AC'], $_POST['Heat'], $_POST['Gym'], $_POST['Pets'], $_POST['Smoking'], $_POST['Wheelchair'], $_POST['bedroom']);
 		$stmt->execute();
@@ -48,34 +36,22 @@ if(!isset($_SESSION['member_id'])){
 	}
 	else{
 		echo "insert query failed";
-	} 
+	} */
 	
  }
  
 ?>
 <div class="register-page">
 	
-<h1>Register A Property</h1>
-<div class="well">
-<div class="row">
-<div class="col-md-4 col-md-offset-4">
+<h1>Search Accomadations</h1>
 
-<h2 style="text-align: center">Property Details</h2>
+<div class="row">
+<div class="col-md-4">
+<div class="well">
+<h2 style="text-align: center">Search Details</h2>
 
 <form name='registerproperty' id='registerproperty' action='register.php' method='post'>
-	<div class="form-group">
-			<label>Address</label>
-			<input class="form-control" type='text' name='address' id='address' placeholder='200'/>
-	</div>
-	<div class="form-group">
-			<label>Street Name</label>
-			<input class="form-control" type='text' name='street_name' id='street_name' placeholder='University'/>
-	</div>
-				    
-	<div class="form-group">
-			<label>Postal Code</label>
-			<input class="form-control" type='text' name='postal_code' id='postal_code' placeholder='KT1 1R4'/>
-	</div>
+	
 	
 	<div class="form-group">
 			<label>Price Per Week</label>
@@ -226,7 +202,7 @@ if(!isset($_SESSION['member_id'])){
 		</label>
 	</div>
 
-	<input class="btn btn-default" type='submit' id='registerBtn' name='registerBtn' value='Submit' /> 
+	<input class="btn btn-default" type='submit' id='searchBtn' name='searchBtn' value='Search' /> 
 
 
 </form>

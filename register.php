@@ -65,26 +65,26 @@ if(!isset($_SESSION['member_id'])){
 <form name='registerproperty' id='registerproperty' action='register.php' method='post'>
 	<div class="form-group">
 			<label>Address</label>
-			<input class="form-control" type='text' name='address' id='address' placeholder='200'/>
+			<input class="form-control" type='text' name='address' id='address' placeholder='200' required="true"/>
 	</div>
 	<div class="form-group">
 			<label>Street Name</label>
-			<input class="form-control" type='text' name='street_name' id='street_name' placeholder='University'/>
+			<input class="form-control" type='text' name='street_name' id='street_name' placeholder='University' required="true"/>
 	</div>
 				    
 	<div class="form-group">
 			<label>Postal Code</label>
-			<input class="form-control" type='text' name='postal_code' id='postal_code' placeholder='KT1 1R4'/>
+			<input class="form-control" type='text' name='postal_code' id='postal_code' placeholder='KT1 1R4' required="true"/>
 	</div>
 	
 	<div class="form-group">
 			<label>Price Per Week</label>
-			<input class="form-control" type='number' name='price' id='price' placeholder='200'/>
+			<input class="form-control" type='number' name='price' id='price' placeholder='200' required="true"/>
 	</div>			        
 				            
 	 <div class="form-group">     
 			<label>District:
-				<select name="district">
+				<select name="district" required="true">
 					<option value="">Select...</option>
 					<option value="1">Central</option>
 					<option value="2">East End</option>
@@ -97,7 +97,7 @@ if(!isset($_SESSION['member_id'])){
 			
 	 <div class="form-group">
 			<label>Type:
-				<select name="type">
+				<select name="type" required="true">
 					<option value="">Select...</option>
 					<option value="Single">Single</option>
 					<option value="Duplex">Duplex</option>
@@ -108,20 +108,20 @@ if(!isset($_SESSION['member_id'])){
 			
 	<div class="form-group">
 			<label>Bedroom(s)</label>
-			<input class="form-control" type='number' name='bedroom' id='bedroom' placeholder='2' />
+			<input class="form-control" type='number' name='bedroom' id='bedroom' placeholder='2' required="true"/>
 	</div>	
 	
 	<div class="form-group">
 			<label>Bathroom(s)</label>
-			<input class="form-control" type='number' name='bathroom' id='bathroom' placeholder='2' />
+			<input class="form-control" type='number' name='bathroom' id='bathroom' placeholder='2' required="true"/>
 	</div>
 		
 	<div class="form-group">
 		<label>Pool:
-			<input type="radio" name="Pool"
+			<input type="radio" name="Pool" required="true"
 			<?php if (isset($Pool) && $Pool=="Yes") echo "checked";?>
 			value="1">Yes
-		<input type="radio" name="Pool"
+		<input type="radio" name="Pool" required="true"
 		<?php if (isset($Pool) && $Pool=="No") echo "checked";?>
 		value="0">No
 		</label>
@@ -129,10 +129,10 @@ if(!isset($_SESSION['member_id'])){
 	
 	<div class="form-group">
 		<label>Laundry:
-			<input type="radio" name="Laundry"
+			<input type="radio" name="Laundry" required="true"
 			<?php if (isset($Laundry) && $Laundry=="Yes") echo "checked";?>
 			value="1">Yes
-		<input type="radio" name="Laundry"
+		<input type="radio" name="Laundry" required="true"
 		<?php if (isset($Laundry) && $Laundry=="No") echo "checked";?>
 		value="0">No
 		</label>
@@ -140,10 +140,10 @@ if(!isset($_SESSION['member_id'])){
 	
 	 <div class="form-group">
 		<label>Internet:
-			<input type="radio" name="Internet"
+			<input type="radio" name="Internet" required="true"
 			<?php if (isset($Internet) && $Internet=="Yes") echo "checked";?>
 			value="1">Yes
-		<input type="radio" name="Internet"
+		<input type="radio" name="Internet" required="true"
 		<?php if (isset($Internet) && $Internet=="No") echo "checked";?>
 		value="0">No
 		</label>
@@ -151,10 +151,10 @@ if(!isset($_SESSION['member_id'])){
 	
 	<div class="form-group">
 		<label>Parking:
-			<input type="radio" name="Parking"
+			<input type="radio" name="Parking" required="true"
 			<?php if (isset($Parking) && $Parking=="Yes") echo "checked";?>
 			value="1">Yes
-		<input type="radio" name="Parking"
+		<input type="radio" name="Parking" required="true"
 		<?php if (isset($Parking) && $Parking=="No") echo "checked";?>
 		value="0">No
 		</label>
@@ -162,10 +162,10 @@ if(!isset($_SESSION['member_id'])){
 	
 	<div class="form-group">
 		<label>Heat:
-			<input type="radio" name="Heat"
+			<input type="radio" name="Heat" required="true"
 			<?php if (isset($Heat) && $Heat=="Yes") echo "checked";?>
 			value="1">Yes
-		<input type="radio" name="Heat"
+		<input type="radio" name="Heat" required="true"
 		<?php if (isset($Heat) && $Heat=="No") echo "checked";?>
 		value="0">No
 		</label>
@@ -173,10 +173,10 @@ if(!isset($_SESSION['member_id'])){
 
 	<div class="form-group">
 		<label>AC:
-			<input type="radio" name="AC"
+			<input type="radio" name="AC" required="true"
 			<?php if (isset($AC) && $AC=="Yes") echo "checked";?>
 			value="1">Yes
-		<input type="radio" name="AC"
+		<input type="radio" name="AC" required="true"
 		<?php if (isset($AC) && $AC="No") echo "checked";?>
 		value="0">No
 		</label>
@@ -184,21 +184,21 @@ if(!isset($_SESSION['member_id'])){
 	
 	<div class="form-group">
 		<label>Smoking:
-			<input type="radio" name="Smoking"
+			<input type="radio" name="Smoking" required="true"
 			<?php if (isset($Smoking) && $Smoking=="Yes") echo "checked";?>
 			value="1">Yes
-		<input type="radio" name="Smoking"
+		<input type="radio" name="Smoking" required="true"
 		<?php if (isset($Smoking) && $Smoking=="No") echo "checked";?>
 		value="0">No
 		</label>
 	</div>
 	
 	<div class="form-group">
-		<label>Wheelchair:
-			<input type="radio" name="Wheelchair"
+		<label>Wheelchair: 
+			<input type="radio" name="Wheelchair" required="true"
 			<?php if (isset($Wheelchair) && $Wheelchair=="Yes") echo "checked";?>
 			value="1">Yes
-		<input type="radio" name="Wheelchair"
+		<input type="radio" name="Wheelchair" required="true"
 		<?php if (isset($Wheelchair) && $Wheelchair=="No") echo "checked";?>
 		value="0">No
 		</label>
@@ -206,10 +206,10 @@ if(!isset($_SESSION['member_id'])){
 
 	<div class="form-group">
 		<label>Gym:
-			<input type="radio" name="Gym"
+			<input type="radio" name="Gym" required="true"
 			<?php if (isset($Gym) && $Gym=="Yes") echo "checked";?>
 			value="1">Yes
-		<input type="radio" name="Gym"
+		<input type="radio" name="Gym" required="true"
 		<?php if (isset($Gym) && $Gym=="No") echo "checked";?>
 		value="0">No
 		</label>
@@ -217,10 +217,10 @@ if(!isset($_SESSION['member_id'])){
 	
 	<div class="form-group">
 		<label>Pets:
-			<input type="radio" name="Pets"
+			<input type="radio" name="Pets" required="true"
 			<?php if (isset($Pets) && $Pets=="Yes") echo "checked";?>
 			value="1">Yes
-		<input type="radio" name="Pets"
+		<input type="radio" name="Pets" required="true"
 		<?php if (isset($Pets) && $Pets=="No") echo "checked";?>
 		value="0">No
 		</label>

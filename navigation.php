@@ -16,9 +16,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                 		<a href="search.php">Find a Place</a>
-                		<li>
-                	   </li>
+                		</li>
+                	   
                         <?php if(isset($_SESSION['member_id'])): ?>
+                        
+
                         <!--<a href="index.php?logout=1" id="login">Logout</a>-->
                         <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>

@@ -154,35 +154,35 @@ if(isset($_POST['loginBtn'])){
 				 <form name='register' id='register' action='login.php' method='post'>
 				    <div class="form-group">
 				            <label>Email</label>
-				            <input class="form-control" type='text' name='email' id='email' />
+				            <input class="form-control" type='text' name='email' id='email' required="true" />
 				     </div>
 				     <div class="form-group">
 				            <label>Password</label>
-				            <input class="form-control" type='password' name='password' id='password' />
+				            <input class="form-control" type='password' name='password' id='password' required="true"/>
 				     </div>
 				     <div class="form-group">
 				            <label>First Name</label>
-				            <input class="form-control" type='text' name='firstname' id='firstname' />
+				            <input class="form-control" type='text' name='firstname' id='firstname' required="true"/>
 				     </div>
 				     <div class="form-group">
 				            <label>Last Name</label>
-				            <input class="form-control" type='text' name='lastname' id='lastname' />
+				            <input class="form-control" type='text' name='lastname' id='lastname' required="true"/>
 				     </div>
 				     <div class="form-group">
 				            <label>Phone Number</label>
-				            <input class="form-control" type='text' name='pphone' id='pphone' />
+				            <input class="form-control" type='text' name='pphone' id='pphone' required="true"/>
 				     </div>
 				     <div class="form-group">
 				            <label>Graduating Year</label>
-				            <input class="form-control" type='number' name='year' id='year' />
+				            <input class="form-control" type='number' name='year' id='year' required="true"/>
 				     </div>
 				     <div class="form-group">
 				            <label>Faculty</label>
-				            <input class="form-control" type='text' name='faculty' id='faculty' />
+				            <input class="form-control" type='text' name='faculty' id='faculty' required="true"/>
 				     </div>
 				     <div class="form-group">
 				            <label>Degree</label>
-				            <input class="form-control" type='text' name='degree' id='degree' />
+				            <input class="form-control" type='text' name='degree' id='degree' required="true"/>
 				     </div>
 				        
 				            
