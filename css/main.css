@@ -1,0 +1,49 @@
+html, body {
+    height: 100%;
+    
+}
+
+
+.jumbotron {
+    
+    background-image: url("../img/phill2.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+
+}
+
+
+
+.login-page {
+    padding: 50px;
+    height: auto;
+	background-color: #FFFFFF;
+    text-align: left;
+}
+
+.register-page {
+    padding: 50px;
+    height: auto;
+	background-color: #FFFFFF;
+	text-align: left;
+}
+
+.navbar-custom {
+    background-color: #FFFFFF;
+	border-bottom: 1px solid black;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color: black;
+}
+.navbar-custom .navbar-brand {
+    color: black;
+}
+
+
