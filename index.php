@@ -20,16 +20,16 @@ if(isset($_GET['logout'])){
 	<div class="container">
   		<h1>Welcome Home</h1>
   		<p>Use the trusted Queen's Alumnae network when searching for a place to stay</p>
-		  <div class="row">
+		 <!-- <div class="row">
 		  <div class="col-lg-6 col-lg-offset-3">
 		    <div class="input-group">
 		      <input type="text" class="form-control" placeholder="Search for...">
 		      <span class="input-group-btn">
 		        <button class="btn btn-default" type="button">Go!</button>
 		      </span>
-		    </div><!-- /input-group -->
-		  </div><!-- /.col-lg-6 -->
-		</div><!-- /.row -->
+		    </div>
+		  </div>
+		</div>-->
 	</div>
 </div>
 

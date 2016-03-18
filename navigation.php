@@ -17,14 +17,14 @@
                 <li>
                 		<a href="index.php">Find a Place</a>
                 		<li>
-                		<a href="register.php">Become a Host</a>
-                	</li>
+                	   </li>
                         <?php if(isset($_SESSION['member_id'])): ?>
                         <!--<a href="index.php?logout=1" id="login">Logout</a>-->
                         <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             <li><a href="profile.php">Profile</a></li>
+                            <li><a href="register.php">Become a Host</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="index.php?logout=1">Logout</a></li>
                           </ul>
