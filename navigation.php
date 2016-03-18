@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                		<a href="index.php">Find a Place</a>
+                		<a href="search.php">Find a Place</a>
                 		<li>
                 	   </li>
                         <?php if(isset($_SESSION['member_id'])): ?>
