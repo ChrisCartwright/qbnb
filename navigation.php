@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+            
             <a class="navbar-brand" href="index.php">QBnB</a>
         </div>
 
@@ -16,13 +16,15 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                 		<a href="search.php">Find a Place</a>
-                		</li>
+                		</li> 
                 	   
                         <?php if(isset($_SESSION['member_id'])): ?>
+							
+						
                         
 
                         <!--<a href="index.php?logout=1" id="login">Logout</a>-->
-                        <li class="dropdown">
+                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             <li><a href="profile.php">Profile</a></li>
@@ -30,13 +32,14 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="index.php?logout=1">Logout</a></li>
                           </ul>
-                        </li>
-                        <?php else: ?>
+                        </li> 
+                       <?php else: ?>
                         <li>
                         <a href="login.php" id="login">Login</a>
                     </li>
-                        <?php endif; ?>
-                    
+						<?php endif; ?>
+					
+                        
                         
 
                        
@@ -44,6 +47,6 @@
             </ul>
         </div>
         <!-- /.navbar-collapse -->
-    </div>
+   </div>
     <!-- /.container -->
-</nav>
+</nav> 
