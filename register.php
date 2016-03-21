@@ -1,7 +1,7 @@
 
 
 <?php include 'header.php'; ?>
-<?php include 'navigation.php'; ?>
+
 <?php
   //Create a user session or resume an existing one
  session_start();
@@ -15,7 +15,7 @@ if(isset($_GET['logout'])){
 	session_destroy();
 }
  ?>
- 
+ <?php include 'navigation.php'; ?>
  
  <?php
  //check if the user is already logged in and has an active session
