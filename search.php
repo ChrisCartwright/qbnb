@@ -1,7 +1,7 @@
 
 
 <?php include 'header.php'; ?>
-<?php include 'navigation.php'; ?>
+
 <?php
   //Create a user session or resume an existing one
  session_start();
@@ -17,13 +17,13 @@ if(isset($_GET['logout'])){
 }
  ?>
 
- 
+ <?php include 'navigation.php'; ?>
  
 <?php
   if(isset($_POST['searchBtn'])){
 	include_once 'config/connection.php'; 
 	 
-	 console.log("hheklo");
+	 
 	/*$query = "INSERT INTO property (member_id, district_id, address, street_name, postal_code, type, price, bathroom, Pool, Laundry, Internet, Parking, AC, Heat, Gym, Pets, Smoking, Wheelchair, bedroom) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con ->prepare($query)) {
 		$stmt->bind_Param("issiisiiiiiiiiiii", $_SESSION['member_id'], $_POST['district'], $_POST['address'], $_POST['street_name'], $_POST['postal_code'], $_POST['type'], $_POST['price'], $_POST['bathroom'], $_POST['Pool'], $_POST['Laundry'], $_POST['Internet'], $_POST['Parking'], $_POST['AC'], $_POST['Heat'], $_POST['Gym'], $_POST['Pets'], $_POST['Smoking'], $_POST['Wheelchair'], $_POST['bedroom']);
@@ -50,7 +50,7 @@ if(isset($_GET['logout'])){
 <div class="well">
 <h2 style="text-align: center">Search Details</h2>
 
-<form name='registerproperty' id='registerproperty' action='register.php' method='post'>
+<form name='searchproperty' id='searchproperty' action='search.php' method='post'>
 	
 	
 	<div class="form-group">
