@@ -1,4 +1,5 @@
  <?php include 'header.php'; ?>
+
  
  <?php
   //Create a user session or resume an existing one
@@ -13,7 +14,7 @@ if(isset($_GET['logout'])){
 }
  ?>
  
- <?php include 'navigation.php'; ?>
+ 
  <?php 
  if(isset($_SESSION['member_id'])){
 
@@ -81,7 +82,7 @@ if(isset($_GET['logout'])){
 
 
 
-
+ <?php include 'navigation.php'; ?>
 		<div class="register-page">
 			<h1>Welcome</h1>
 				
