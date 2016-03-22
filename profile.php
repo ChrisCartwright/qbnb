@@ -23,8 +23,9 @@ if(isset($_GET['logout'])){
  $stmt->bind_Param("i", $_SESSION['member_id']);
  $stmt->execute();
  $result = $stmt->get_result();
- $myrow = $result->fetch_assoc();
- 
+  $myrow = $result->fetch_assoc();
+	 
+   
  }
  
  else {
@@ -58,22 +59,20 @@ if(isset($_GET['logout'])){
 	$faculty = $_POST['faculty'];
 	$degree = $_POST['degree']; 
 	
-	$query = "UPDATE member SET FName= '$firstname', LName= '$lastname', EMail= '$email', PPhone='$pphone', Year='$year', Faculty='$faculty', Degree='$degree', password='$password' WHERE Member_ID=?";
+	$query = "UPDATE member SET FName= '$firstname', LName= '$lastname', EMail= '$email', PPhone='$pphone', Year=$year, Faculty='$faculty', Degree='$degree', password='$password' WHERE Member_ID=?";
 	echo $query;
 	
  
 	$stmt = $con->prepare($query); 
-	$stmt->bind_Param("issssisss", $_SESSION['member_id'], $firstname, $lastname, $email, $pphone, $year, $faculty, $degree, $password); 
-	
+	$stmt->bind_Param("i", $_SESSION['member_id']);
 	// Execute the query
         if($stmt->execute()){
-            echo "Record was updated";
+            
         }else{
             echo "Unable to update record";
         }
 	
-	echo $query;
-	echo $firstname;
+	
  }
   
  ?>
@@ -137,3 +136,4 @@ if(isset($_GET['logout'])){
 			</div>
 			</div>
 			</div>
+<?php include 'footer.php';?>
