@@ -10,7 +10,7 @@
  <?php
  //check if the user clicked the logout link and set the logout GET parameter
 if(isset($_GET['logout'])){
-	console.log("after logout in search");
+	
 	//Destroy the user's session.
 	$_SESSION['member_id']=null;
 	session_destroy();
@@ -23,20 +23,19 @@ if(isset($_GET['logout'])){
   if(isset($_POST['searchBtn'])){
 	include_once 'config/connection.php'; 
 	 
-	 
-	/*$query = "INSERT INTO property (member_id, district_id, address, street_name, postal_code, type, price, bathroom, Pool, Laundry, Internet, Parking, AC, Heat, Gym, Pets, Smoking, Wheelchair, bedroom) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	$query = "SELECT * FROM property WHERE Price LIKE '%" . $_POST['price'] . "%' AND District_ID LIKE '%" . $_POST['district'] . "%' AND Type LIKE '%" . $_POST['type'] . "%' AND Bedroom LIKE '%" . $_POST['bedroom'] . "%' AND Bathroom LIKE '%" . $_POST['bathroom'] . "%' AND Pool LIKE '%" . $_POST['Pool'] . "%' AND Laundry LIKE '%" . $_POST['Laundry'] . "%' AND Internet LIKE '%" . $_POST['Internet'] . "%' AND Parking LIKE '%" . $_POST['Parking'] . "%' AND AC LIKE '%" . $_POST['AC'] . "%' AND Heat LIKE '%" . $_POST['Heat'] . "%' AND Gym LIKE '%" . $_POST['Gym'] . "%' AND Pets LIKE '%" . $_POST['Pets'] . "%' AND Smoking LIKE '%" . $_POST['Smoking'] . "%' AND Wheelchair LIKE '%" . $_POST['Wheelchair'] . "%'"; 
+
+
 	if($stmt = $con ->prepare($query)) {
-		$stmt->bind_Param("issiisiiiiiiiiiii", $_SESSION['member_id'], $_POST['district'], $_POST['address'], $_POST['street_name'], $_POST['postal_code'], $_POST['type'], $_POST['price'], $_POST['bathroom'], $_POST['Pool'], $_POST['Laundry'], $_POST['Internet'], $_POST['Parking'], $_POST['AC'], $_POST['Heat'], $_POST['Gym'], $_POST['Pets'], $_POST['Smoking'], $_POST['Wheelchair'], $_POST['bedroom']);
 		$stmt->execute();
-		
-	//How do we insert the property_id? and what do we do about member_id (get from login?)
-	
-	header("Location: index.php");
-	die();
+		$result = $stmt->get_result();
+ 		while($myrow = $result->fetch_assoc()) {
+		}
+
 	}
 	else{
-		echo "insert query failed";
-	} */
+		echo "query failed";
+	}
 	
  }
  
@@ -55,7 +54,7 @@ if(isset($_GET['logout'])){
 	
 	<div class="form-group">
 			<label>Price Per Week</label>
-			<input class="form-control" type='number' name='price' id='price' placeholder='200'/>
+			<input class="form-control" type='number' name='price' id='price' placeholder='Maximum'/>
 	</div>			        
 				            
 	 <div class="form-group">     
@@ -91,116 +90,108 @@ if(isset($_GET['logout'])){
 			<label>Bathroom(s)</label>
 			<input class="form-control" type='number' name='bathroom' id='bathroom' placeholder='2' />
 	</div>
-		
+
 	<div class="form-group">
-		<label>Pool:
-			<input type="radio" name="Pool"
-			<?php if (isset($Pool) && $Pool=="Yes") echo "checked";?>
-			value="1">Yes
-		<input type="radio" name="Pool"
-		<?php if (isset($Pool) && $Pool=="No") echo "checked";?>
-		value="0">No
-		</label>
-	</div>
+			<label>Pool:
+				<select name="Pool">
+					<option value="">Select...</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+			</label>
+	</div>	
 	
 	<div class="form-group">
-		<label>Laundry:
-			<input type="radio" name="Laundry"
-			<?php if (isset($Laundry) && $Laundry=="Yes") echo "checked";?>
-			value="1">Yes
-		<input type="radio" name="Laundry"
-		<?php if (isset($Laundry) && $Laundry=="No") echo "checked";?>
-		value="0">No
-		</label>
-	</div>
+			<label>Laundry:
+				<select name="Laundry">
+					<option value="">Select...</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+			</label>
+	</div>	
 	
 	 <div class="form-group">
-		<label>Internet:
-			<input type="radio" name="Internet"
-			<?php if (isset($Internet) && $Internet=="Yes") echo "checked";?>
-			value="1">Yes
-		<input type="radio" name="Internet"
-		<?php if (isset($Internet) && $Internet=="No") echo "checked";?>
-		value="0">No
-		</label>
-	</div>
+			<label>Internet:
+				<select name="Internet">
+					<option value="">Select...</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+			</label>
+	</div>	
 	
 	<div class="form-group">
-		<label>Parking:
-			<input type="radio" name="Parking"
-			<?php if (isset($Parking) && $Parking=="Yes") echo "checked";?>
-			value="1">Yes
-		<input type="radio" name="Parking"
-		<?php if (isset($Parking) && $Parking=="No") echo "checked";?>
-		value="0">No
-		</label>
-	</div>
+			<label>Parking:
+				<select name="Parking">
+					<option value="">Select...</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+			</label>
+	</div>	
 	
 	<div class="form-group">
-		<label>Heat:
-			<input type="radio" name="Heat"
-			<?php if (isset($Heat) && $Heat=="Yes") echo "checked";?>
-			value="1">Yes
-		<input type="radio" name="Heat"
-		<?php if (isset($Heat) && $Heat=="No") echo "checked";?>
-		value="0">No
-		</label>
-	</div>
+			<label>Heat:
+				<select name="Heat">
+					<option value="">Select...</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+			</label>
+	</div>	
 
 	<div class="form-group">
-		<label>AC:
-			<input type="radio" name="AC"
-			<?php if (isset($AC) && $AC=="Yes") echo "checked";?>
-			value="1">Yes
-		<input type="radio" name="AC"
-		<?php if (isset($AC) && $AC="No") echo "checked";?>
-		value="0">No
-		</label>
-	</div>
+			<label>AC:
+				<select name="AC">
+					<option value="">Select...</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+			</label>
+	</div>	
 	
 	<div class="form-group">
-		<label>Smoking:
-			<input type="radio" name="Smoking"
-			<?php if (isset($Smoking) && $Smoking=="Yes") echo "checked";?>
-			value="1">Yes
-		<input type="radio" name="Smoking"
-		<?php if (isset($Smoking) && $Smoking=="No") echo "checked";?>
-		value="0">No
-		</label>
-	</div>
+			<label>Smoking:
+				<select name="Smoking">
+					<option value="">Select...</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+			</label>
+	</div>	
 	
 	<div class="form-group">
-		<label>Wheelchair:
-			<input type="radio" name="Wheelchair"
-			<?php if (isset($Wheelchair) && $Wheelchair=="Yes") echo "checked";?>
-			value="1">Yes
-		<input type="radio" name="Wheelchair"
-		<?php if (isset($Wheelchair) && $Wheelchair=="No") echo "checked";?>
-		value="0">No
-		</label>
-	</div>
+			<label>Wheelchair:
+				<select name="Wheelchair">
+					<option value="">Select...</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+			</label>
+	</div>	
 
 	<div class="form-group">
-		<label>Gym:
-			<input type="radio" name="Gym"
-			<?php if (isset($Gym) && $Gym=="Yes") echo "checked";?>
-			value="1">Yes
-		<input type="radio" name="Gym"
-		<?php if (isset($Gym) && $Gym=="No") echo "checked";?>
-		value="0">No
-		</label>
-	</div>
+			<label>Gym:
+				<select name="Gym">
+					<option value="">Select...</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+			</label>
+	</div>	
 	
 	<div class="form-group">
-		<label>Pets:
-			<input type="radio" name="Pets"
-			<?php if (isset($Pets) && $Pets=="Yes") echo "checked";?>
-			value="1">Yes
-		<input type="radio" name="Pets"
-		<?php if (isset($Pets) && $Pets=="No") echo "checked";?>
-		value="0">No
-		</label>
-	</div>
+			<label>Pets:
+				<select name="Pets">
+					<option value="">Select...</option>
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+			</label>
+	</div>	
+		
+	
 
 	<input class="btn btn-default" type='submit' id='searchBtn' name='searchBtn' value='Search' /> 
 
@@ -208,6 +199,9 @@ if(isset($_GET['logout'])){
 </form>
 </div>
 </div>
+<div class="cold-md-8">
+	<p></p>
+</div>	
 </div>
 </div>
 
