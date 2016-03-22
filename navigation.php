@@ -28,7 +28,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             <li><a href="profile.php">Profile</a></li>
-                            <li><a href="register.php">Become a Host</a></li>
+                            <li><a href="register.php">Register A Property</a></li>
+							<li><a href="property.php">Manage Properties</a></li>
+							<li><a href="bookings.php">Manage Bookings</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="index.php?logout=1">Logout</a></li>
                           </ul>
