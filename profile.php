@@ -30,7 +30,7 @@ if(isset($_GET['logout'])){
  }
  
  else {
-	 echo "test";
+	 echo "Not logged in";
 	header("Location: index.php");
 	die();
 	}
@@ -61,10 +61,8 @@ if(isset($_GET['logout'])){
 	$degree = $_POST['degree']; 
 	
 	$query = "UPDATE member SET FName= '$firstname', LName= '$lastname', EMail= '$email', PPhone='$pphone', Year=$year, Faculty='$faculty', Degree='$degree', password='$password' WHERE Member_ID=?";
-	echo $query;
 	
- 
-	$stmt = $con->prepare($query); 
+ 	$stmt = $con->prepare($query); 
 	$stmt->bind_Param("i", $_SESSION['member_id']);
 	// Execute the query
         if($stmt->execute()){
@@ -78,6 +76,33 @@ if(isset($_GET['logout'])){
   
  ?>
  
+ <?php 
+ include_once 'config/connection.php'; 
+ 
+//$sql_query="SELECT * FROM member";
+//$result_set=mysql_query($sql_query);
+ 
+ if(isset($_POST['deleteBtn'])&& isset($_SESSION['member_id'])){
+	
+	$query = "DELETE FROM member WHERE Member_ID=?";
+	//mysql_query($query);
+	
+	if($stmt = $con->prepare($query)){
+	$stmt->bind_Param("i", $_SESSION['member_id']);
+	$stmt->execute();
+		$_SESSION['member_id']=null;
+		session_destroy();
+		header("Location: index.php");
+		die();
+            
+        }
+		else{
+            echo "Unable to update record";
+        }	
+	
+ }
+ 
+ ?>
 
 
 
@@ -132,6 +157,10 @@ if(isset($_GET['logout'])){
 				      </fieldset>
 					<input class="btn btn-default" type='submit' id='editBtn' name='editBtn' value='Edit' /> 
 					 <input class="btn btn-default" type='submit' id='saveBtn' name='saveBtn' value='Save' /> 
+					 <br>
+					 <br>
+					  <input class="btn btn-default" type='submit' id='deleteBtn' name='deleteBtn' value='Delete Membership' /> 
+					  
 				</form>
 			</div>
 			</div>

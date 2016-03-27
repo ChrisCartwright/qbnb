@@ -13,6 +13,15 @@ if(isset($_GET['logout'])){
     session_destroy();
 }
  ?>
+ 
+ <?php
+ //check if the user clicked the logout link and set the logout GET parameter
+if(isset($_GET['logout'])){
+    //Destroy the user's session.
+    $_SESSION['admin_id']=null;
+    session_destroy();
+}
+ ?>
 
 <?php include 'navigation.php'; ?>
 

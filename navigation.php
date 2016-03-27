@@ -14,16 +14,34 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                		<a href="search.php">Find a Place</a>
-                		</li> 
-                	   
-                        <?php if(isset($_SESSION['member_id'])): ?>
-							
 						
-                        
-
+						
+						<?php if(isset($_SESSION['admin_id'])): ?>
+						
+						
+						<!--<a href="index.php?logout=1" id="login">Logout</a>-->
+						<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration<span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li><a href="admin.php">Home</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="index.php?logout=1">Logout</a></li>
+                          </ul>
+                        </li> 
+						
+						
+                       <?php else: ?>
+                        					
+						
+                        <?php if(isset($_SESSION['member_id'])): ?>
+						
                         <!--<a href="index.php?logout=1" id="login">Logout</a>-->
+						<li class="hidden"><a href="#">Administration</a></li>
+						
+						<li>
+                		<a href="search.php">Find a Place</a>
+                		</li>
+						
                        <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
                           <ul class="dropdown-menu">
@@ -31,20 +49,32 @@
                             <li><a href="register.php">Register A Property</a></li>
 							<li><a href="property.php">Manage Properties</a></li>
 							<li><a href="bookings.php">Manage Bookings</a></li>
+							<li><a href="editbookings.php">Edit Bookings</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="index.php?logout=1">Logout</a></li>
                           </ul>
                         </li> 
-                       <?php else: ?>
+						
+						<?php else: ?>
+						
+						<li>
+						<a href="admin.php">Administration</a>
+						</li>
+						
+						<li>
+                		<a href="search.php">Find a Place</a>
+                		</li>
+						
                         <li>
-                        <a href="login.php" id="login">Login</a>
-                    </li>
+                        <a href="login.php" id="login">Member</a>
+						</li>
 						<?php endif; ?>
-					
-                        
-                        
-
+						
+						 
+						
+					 <?php endif; ?>
                        
+                        
                 
             </ul>
         </div>
