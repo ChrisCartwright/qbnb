@@ -194,46 +194,46 @@ if(isset($_GET['logout'])){
 		$result = $stmt->get_result();
  		while($myrow = $result->fetch_assoc()) {
  			if($myrow["Pool"] == 1) {
- 				$pool = 'yes';
+ 				$pool = 'Yes';
  			}
  			else {
- 				$pool = 'no';
+ 				$pool = 'No';
  			}
  			if($myrow["Laundry"] == 1) {
- 				$laundry = 'yes';
+ 				$laundry = 'Yes';
  			}
  			else {
- 				$laundry = 'no';
+ 				$laundry = 'No';
  			}
  			if($myrow["Internet"] == 1) {
- 				$internet = 'yes';
+ 				$internet = 'Yes';
  			}
  			else {
- 				$internet = 'no';
+ 				$internet = 'No';
  			}
  			if($myrow["Parking"] == 1) {
- 				$parking = 'yes';
+ 				$parking = 'Yes';
  			}
  			else {
- 				$parking = 'no';
+ 				$parking = 'No';
  			}
  			if($myrow["AC"] == 1) {
- 				$ac = 'yes';
+ 				$ac = 'Yes';
  			}
  			else {
- 				$ac = 'no';
+ 				$ac = 'No';
  			}
  			if($myrow["Heat"] == 1) {
- 				$heat = 'yes';
+ 				$heat = 'Yes';
  			}
  			else {
- 				$heat = 'no';
+ 				$heat = 'No';
  			}
  			if($myrow["Gym"] == 1) {
- 				$gym = 'yes';
+ 				$gym = 'Yes';
  			}
  			else {
- 				$gym = 'no';
+ 				$gym = 'No';
  			}
  			if($myrow["Pets"] == 1) {
  				$pets = 'Allowed';
@@ -242,16 +242,16 @@ if(isset($_GET['logout'])){
  				$pets = 'Not Allowed';
  			}
  			if($myrow["Smoking"] == 1) {
- 				$smoking = 'yes';
+ 				$smoking = 'Yes';
  			}
  			else {
- 				$smoking = 'no';
+ 				$smoking = 'No';
  			}
  			if($myrow["Wheelchair"] == 1) {
- 				$wheelchair = 'yes';
+ 				$wheelchair = 'Yes';
  			}
  			else {
- 				$wheelchair = 'no';
+ 				$wheelchair = 'No';
  			}
 
  			echo '<div class="well">
