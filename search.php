@@ -19,27 +19,7 @@ if(isset($_GET['logout'])){
 
  <?php include 'navigation.php'; ?>
  
-<?php
-  if(isset($_POST['searchBtn'])){
-	include_once 'config/connection.php'; 
-	 
-	$query = "SELECT * FROM property WHERE Price LIKE '%" . $_POST['price'] . "%' AND District_ID LIKE '%" . $_POST['district'] . "%' AND Type LIKE '%" . $_POST['type'] . "%' AND Bedroom LIKE '%" . $_POST['bedroom'] . "%' AND Bathroom LIKE '%" . $_POST['bathroom'] . "%' AND Pool LIKE '%" . $_POST['Pool'] . "%' AND Laundry LIKE '%" . $_POST['Laundry'] . "%' AND Internet LIKE '%" . $_POST['Internet'] . "%' AND Parking LIKE '%" . $_POST['Parking'] . "%' AND AC LIKE '%" . $_POST['AC'] . "%' AND Heat LIKE '%" . $_POST['Heat'] . "%' AND Gym LIKE '%" . $_POST['Gym'] . "%' AND Pets LIKE '%" . $_POST['Pets'] . "%' AND Smoking LIKE '%" . $_POST['Smoking'] . "%' AND Wheelchair LIKE '%" . $_POST['Wheelchair'] . "%'"; 
 
-
-	if($stmt = $con ->prepare($query)) {
-		$stmt->execute();
-		$result = $stmt->get_result();
- 		while($myrow = $result->fetch_assoc()) {
-		}
-
-	}
-	else{
-		echo "query failed";
-	}
-	
- }
- 
-?>
 <div class="register-page">
 	
 <h1>Search Accomadations</h1>
@@ -199,8 +179,123 @@ if(isset($_GET['logout'])){
 </form>
 </div>
 </div>
-<div class="cold-md-8">
-	<p></p>
+<div class="col-md-8">
+	<?php
+  if(isset($_POST['searchBtn'])){
+	include_once 'config/connection.php'; 
+
+
+	 
+	$query = "SELECT * FROM property WHERE Price LIKE '%" . $_POST['price'] . "%' AND District_ID LIKE '%" . $_POST['district'] . "%' AND Type LIKE '%" . $_POST['type'] . "%' AND Bedroom LIKE '%" . $_POST['bedroom'] . "%' AND Bathroom LIKE '%" . $_POST['bathroom'] . "%' AND Pool LIKE '%" . $_POST['Pool'] . "%' AND Laundry LIKE '%" . $_POST['Laundry'] . "%' AND Internet LIKE '%" . $_POST['Internet'] . "%' AND Parking LIKE '%" . $_POST['Parking'] . "%' AND AC LIKE '%" . $_POST['AC'] . "%' AND Heat LIKE '%" . $_POST['Heat'] . "%' AND Gym LIKE '%" . $_POST['Gym'] . "%' AND Pets LIKE '%" . $_POST['Pets'] . "%' AND Smoking LIKE '%" . $_POST['Smoking'] . "%' AND Wheelchair LIKE '%" . $_POST['Wheelchair'] . "%'"; 
+
+
+	if($stmt = $con ->prepare($query)) {
+		$stmt->execute();
+		$result = $stmt->get_result();
+ 		while($myrow = $result->fetch_assoc()) {
+ 			if($myrow["Pool"] == 1) {
+ 				$pool = 'Yes';
+ 			}
+ 			else {
+ 				$pool = 'No';
+ 			}
+ 			if($myrow["Laundry"] == 1) {
+ 				$laundry = 'Yes';
+ 			}
+ 			else {
+ 				$laundry = 'No';
+ 			}
+ 			if($myrow["Internet"] == 1) {
+ 				$internet = 'Yes';
+ 			}
+ 			else {
+ 				$internet = 'No';
+ 			}
+ 			if($myrow["Parking"] == 1) {
+ 				$parking = 'Yes';
+ 			}
+ 			else {
+ 				$parking = 'No';
+ 			}
+ 			if($myrow["AC"] == 1) {
+ 				$ac = 'Yes';
+ 			}
+ 			else {
+ 				$ac = 'No';
+ 			}
+ 			if($myrow["Heat"] == 1) {
+ 				$heat = 'Yes';
+ 			}
+ 			else {
+ 				$heat = 'No';
+ 			}
+ 			if($myrow["Gym"] == 1) {
+ 				$gym = 'Yes';
+ 			}
+ 			else {
+ 				$gym = 'No';
+ 			}
+ 			if($myrow["Pets"] == 1) {
+ 				$pets = 'Allowed';
+ 			}
+ 			else {
+ 				$pets = 'Not Allowed';
+ 			}
+ 			if($myrow["Smoking"] == 1) {
+ 				$smoking = 'Yes';
+ 			}
+ 			else {
+ 				$smoking = 'No';
+ 			}
+ 			if($myrow["Wheelchair"] == 1) {
+ 				$wheelchair = 'Yes';
+ 			}
+ 			else {
+ 				$wheelchair = 'No';
+ 			}
+
+ 			echo '<div class="well">
+					<div class="row">
+						<div class="col-md-3">
+							<h3>' . $myrow["Address_Number"] . ' ' . $myrow["Address_Name"] . '</h3>
+							<h4>Price/week: ' . $myrow["Price"] . '</h4>
+							<p>Postal Code: ' . $myrow["Address_Postal"] . '</p>
+							<p>District</p>
+						</div>
+						<div class="col-md-3" style="text-align: right">
+							<p>Type: ' . $myrow["Type"] . '</p>
+							<p>Number of Bedrooms: ' . $myrow["Bedroom"] . '</p>
+							<p>Number of Bathrooms: ' . $myrow["Bathroom"] . '</p>
+							<p>Internet: ' . $internet . '</p>
+							<p>Wheelchair Accessible: ' . $wheelchair . '</p>
+							
+						</div>
+						<div class="col-md-3" style="text-align: right">
+							<p>Parking: ' . $parking . '</p>
+							<p>Laundry: ' . $laundry . '</p>
+							<p>Pool: ' . $pool . '</p>
+							<p>Pets: ' . $pets . '</p>
+						</div>
+						<div class="col-md-3" style="text-align: right">
+							<p>Heat: ' . $heat . '</p>
+							<p>A/C: ' . $ac . '</p>
+							<p>Gym: ' . $gym . '</p>
+							<p>Smoking: ' . $smoking . '</p>
+						</div>
+						
+					</div>
+				</div>'
+				;
+		}
+
+	}
+	else{
+		echo "query failed";
+	}
+	
+ }
+ 
+?>
 </div>	
 </div>
 </div>

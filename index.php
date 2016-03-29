@@ -9,9 +9,16 @@
  //check if the user clicked the logout link and set the logout GET parameter
 if(isset($_GET['logout'])){
     //Destroy the user's session.
+
     $_SESSION['member_id']=null;
 	$_SESSION['admin_id']=null;
     session_destroy();
+=======
+    if(isset($_SESSION['member_id'])) {
+  	 	$_SESSION['member_id']=null;
+    	session_destroy();
+    }
+
 }
  ?>
  
@@ -19,9 +26,17 @@ if(isset($_GET['logout'])){
  //check if the user clicked the logout link and set the logout GET parameter
 //if(isset($_GET['logout'])){
     //Destroy the user's session.
+
    //$_SESSION['admin_id']=null;
   // session_destroy();
 //}
+
+    if(isset($_SESSION['admin_id'])) {
+    	$_SESSION['admin_id']=null;
+    	session_destroy();
+    }
+}
+
  ?>
 
 <?php include 'navigation.php'; ?>
