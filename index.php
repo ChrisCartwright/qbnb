@@ -13,7 +13,7 @@ if(isset($_GET['logout'])){
     $_SESSION['member_id']=null;
 	$_SESSION['admin_id']=null;
     session_destroy();
-=======
+
     if(isset($_SESSION['member_id'])) {
   	 	$_SESSION['member_id']=null;
     	session_destroy();
@@ -35,7 +35,7 @@ if(isset($_GET['logout'])){
     	$_SESSION['admin_id']=null;
     	session_destroy();
     }
-}
+
 
  ?>
 

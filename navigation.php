@@ -40,6 +40,8 @@
 						<li>
                 		<a href="search.php">Find a Place</a>
                 		</li>
+						<li><a href="register.php">Become a Host</a>
+						</li>
 						
                        <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
@@ -58,10 +60,9 @@
 						<li>	
                 		<a href="index.php">Find a Place</a>
                 		</li>
-                		<li><a href="register.php">Become a Host</a>
-                	</li>
+                		
                 	<li>
-                		<a href="register.php">Register</a>
+                		<a href="login.php">Register</a>
                 	</li>
 						<li>
                         <?php if(isset($_SESSION['id'])): ?>
