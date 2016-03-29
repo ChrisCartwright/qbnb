@@ -146,21 +146,9 @@ if(isset($_GET['logout'])){
 							die();
 							
 						}
-						/* echo "<h2>Properties</h2>";
-						if($num>0){
-							//If the username/password matches a user in our database
-							//Read the user details
-							while($myrow = $result->fetch_assoc()){
-							echo "<h4>" .$myrow['Address_Number']." " .$myrow['Address_Name']. "</h4>";
-							}							
-						} else {
-							//If the member id doesn't matche a user in our database
-							// Display an error message and the login form
-							echo "No Properties";
-						}
-						}  */
+						
 						else {
-							echo "failed to prepare the SQL";
+							echo "No existing member";
 						}
 				 }
 				 }
@@ -170,12 +158,12 @@ if(isset($_GET['logout'])){
 				</form>
 				</div>
 				</div>
-				</div>
 				
-				<div class="col-md-4 col-md-offset-4">
+				
+				<div class="col-md-4 col-md-offset-0">
 				<div class="well">
 				<h2>Accomodation Management</h2>
-				 <form name='search' id='search' action='adminHome.php' method='post'>	
+				 <form name='searchprop' id='searchprop' action='adminHome.php' method='post'>	
 					<div class="form-group">
 				            <label>Property ID</label>
 				            <input class="form-control" type='text' name='propertyid' id='propertyid' required="true" />
@@ -185,10 +173,9 @@ if(isset($_GET['logout'])){
 				
 									
 				<?php
-				
-					
+									
 					 //check if the login form has been submitted
-					if(isset($_POST['searchpropbtn']))
+					if(isset($_POST['searchpropBtn']))
 					{
  
 					// include database connection
@@ -209,26 +196,18 @@ if(isset($_GET['logout'])){
 						// Get the number of rows returned
 						$num = $result->num_rows;
 						if($num>0){
-							
+							//echo '<meta http-equiv="refresh" content="1; URL=admineditmember.php?id=" . $myrow['Property_ID'] . "" />';
+							//header("Location: localhost/qbnb/admineditmember.php?id=" . $myrow['Member_ID'] . "");
+							//die(); 
+							//echo $myrow['Property_ID'];
 							header("Location: admineditproperty.php?id=" . $myrow['Property_ID'] . "");
-							die();
+							die(); 
+							//<meta http-equiv="Location" content="http://example.com/">
 							
 						}
-						/* echo "<h2>Properties</h2>";
-						if($num>0){
-							//If the username/password matches a user in our database
-							//Read the user details
-							while($myrow = $result->fetch_assoc()){
-							echo "<h4>" .$myrow['Address_Number']." " .$myrow['Address_Name']. "</h4>";
-							}							
-						} else {
-							//If the member id doesn't matche a user in our database
-							// Display an error message and the login form
-							echo "No Properties";
-						}
-						}  */
+						
 						else {
-							echo "failed to prepare the SQL";
+							echo "No existing property";
 						}
 				 }
 				 }
@@ -239,79 +218,7 @@ if(isset($_GET['logout'])){
 				</div>
 				</div>
 				</div>
-				
-				<!--				
-				<br>
-				<input class="btn btn-default" type='submit' id='dmBtn' name='dmBtn' value='Delete Member' />
-							
-			</div>
-			</div>
-				
-					<div class="col-md-4 col-md-offset-0">
-					<div class="well">
-					<h2>Member Details<h2>
-					 <form name='search' id='search' action='adminHome.php' method='get'>
-						
-						<?php
-					
-					/* if(isset($_POST['searchBtn'])){
- 
-					
-					include_once 'config/connection.php'; 
-					
-					
-						$query = "SELECT * FROM booking join property using (property_id) WHERE Booking.Member_ID=?";
-						
-						if($stmt = $con->prepare($query))
-						{ */
-						
-					/* 	$stmt->bind_Param("i", $_POST['member_id']);
-					
-						 
-						$stmt->execute();
-						
-						$result = $stmt->get_result();
-						
-						
-						$num = $result->num_rows;
-						
-						echo "<h3>Property Data</h3>";
-						if($num>0){
-							
-							while($myrow = $result->fetch_assoc()){
-							echo "<h4>" .$myrow['Address_Number']."  " .$myrow['Address_Name']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$myrow['StartDate']. "</h4>";
-							}	
-						}
-						
-						echo "<h3>Host Data</h3>";
-						if($num>0){
-							
-							while($myrow = $result->fetch_assoc()){
-							echo "<h4>" .$myrow['Address_Name']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$myrow['StartDate']. "</h4>";
-							}	
-						}
-
-
-						
-						echo "<h3>Consumer Data</h3>";
-						if($num>0){
-							
-							while($myrow = $result->fetch_assoc()){
-							echo "<h4>" .$myrow['StartDate']. "</h4>";
-							}	
-						} 
-						
-						}
-					} */
-						?> 
-					
-						
-					</fieldset>
-					</form>
-					</div>
-					</div>
-			</div>
-			</div>-->
+				</div>
 
 
 <?php include 'footer.php';?>

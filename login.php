@@ -38,7 +38,7 @@ if(isset($_SESSION['admin_id'])){
 
  
 //check if the login form has been submitted
-if(isset($_POST['loginBtn'])){
+if(isset($_POST['loginmemBtn'])){
  
     // include database connection
     include_once 'config/connection.php'; 
@@ -50,7 +50,7 @@ if(isset($_POST['loginBtn'])){
         if($stmt = $con->prepare($query)){
 		
         // bind the parameters. This is the best way to prevent SQL injection hacks.
-        $stmt->bind_Param("ss", $_POST['email'], $_POST['password']);
+        $stmt->bind_Param("ss", $_POST['emailmem'], $_POST['passwordmem']);
 
 
          
@@ -84,125 +84,107 @@ if(isset($_POST['loginBtn'])){
 ?>
 <?php
 
- if(isset($_POST['registerBtn'])){
+ 
+//check if the login form has been submitted
+if(isset($_POST['loginadmBtn'])){
  
     // include database connection
     include_once 'config/connection.php'; 
 	
 	// SELECT query
-        $query = "SELECT member_id, email FROM member WHERE email=?";
+        $query = "SELECT admin_id, password FROM admin WHERE admin_id=? AND password=?";
  
         // prepare query for execution
         if($stmt = $con->prepare($query)){
 		
         // bind the parameters. This is the best way to prevent SQL injection hacks.
-	        $stmt->bind_Param("s", $_POST['email']);
+        $stmt->bind_Param("is", $_POST['admin_id'], $_POST['passwordadm']);
 
 
-	         
-	        // Execute the query
-			$stmt->execute();
-	 
-			/* resultset */
-			$result = $stmt->get_result();
+         
+        // Execute the query
+		$stmt->execute();
+ 
+		/* resultset */
+		$result = $stmt->get_result();
 
-			// Get the number of rows returned
-			$num = $result->num_rows;;
+		// Get the number of rows returned
+		$num = $result->num_rows;
 		
-			if($num>0){
-				echo "email already registered";
-			} 
-			else {
-				$query = "INSERT INTO member (FName, LName, EMail, PPhone, Year, Faculty, Degree, password) VALUES (?,?,?,?,?,?,?,?)";
-				if($stmt = $con ->prepare($query)) {
-					$stmt->bind_Param("ssssisss", $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['pphone'], $_POST['year'], $_POST['faculty'], $_POST['degree'], $_POST['password']);
-					$stmt->execute();
-
-					$_SESSION['member_id'] = $con->insert_id;
-					//Redirect the browser to the profile editing page and kill this page.
-					header("Location: index.php");
-					die();
-
-				}
-				else {
-					echo "insert query failed";
-				}
-			}
-		} 
-		else {
+		if($num>0){
+			//If the username/password matches a user in our database
+			//Read the user details
+			$myrow = $result->fetch_assoc();
+			//Create a session variable that holds the user's id
+			$_SESSION['admin_id'] = $myrow['admin_id'];
+			//Redirect the browser to the admin home page and kill this page.
+			header("Location: adminhome.php");
+			die();
+		} else {
+			//If the username/password doesn't matche a user in our database
+			// Display an error message and the login form
+			echo "Failed to login";
+		}
+		} else {
 			echo "failed to prepare the SQL";
 		}
  }
- 
 ?>
 
-
 <div class="register-page">
-	<h1 style="text-align: center">Queen's BnB Sign Up or Login</h1>
-	<div class="well">
+	<h1 style="text-align: center">Queen's BnB Login</h1>
 	
-		<div class="row" id="login-box">
+	<div class="well">
+		<div class="row">
+		
 			<div class="col-md-4 col-md-offset-2">
 				<h2>Login</h2>
 				 <form name='login' id='login' action='login.php' method='post'>
 				    <div class="form-group">
 				            <label>Email</label>
-				            <input class="form-control" type='text' name='email' id='email' />
+				            <input class="form-control" type='text' name='emailmem' id='emailmem' />
 				     </div>
 				     <div class="form-group">
 				            <label>Password</label>
-				            <input class="form-control" type='password' name='password' id='password' />
+				            <input class="form-control" type='password' name='passwordmem' id='passwordmem' />
 				     </div>
 				        
 				            
-				   	 <input class="btn btn-default" type='submit' id='loginBtn' name='loginBtn' value='Log In' />        
+				   	 <input class="btn btn-default" type='submit' id='loginmemBtn' name='loginmemBtn' value='Log In' />        
 				   
 				</form>
 			</div>
-			<div class="col-md-4">
-				<h2>Register</h2>
-				 <form name='register' id='register' action='login.php' method='post'>
+			
+			
+			<h2>Administration Login</h2>
+	
+	
+		
+			<div class="col-md-4 col-md-offset-0">
+				
+				 <form name='loginadmin' id='loginadmin' action='login.php' method='post'>
 				    <div class="form-group">
-				            <label>Email</label>
-				            <input class="form-control" type='text' name='email' id='email' required="true" />
+				            <label>Administrative ID</label>
+				            <input class="form-control" type='number' name='admin_id' id='admin_id' />
 				     </div>
 				     <div class="form-group">
 				            <label>Password</label>
-				            <input class="form-control" type='password' name='password' id='password' required="true"/>
-				     </div>
-				     <div class="form-group">
-				            <label>First Name</label>
-				            <input class="form-control" type='text' name='firstname' id='firstname' required="true"/>
-				     </div>
-				     <div class="form-group">
-				            <label>Last Name</label>
-				            <input class="form-control" type='text' name='lastname' id='lastname' required="true"/>
-				     </div>
-				     <div class="form-group">
-				            <label>Phone Number</label>
-				            <input class="form-control" type='text' name='pphone' id='pphone' required="true"/>
-				     </div>
-				     <div class="form-group">
-				            <label>Graduating Year</label>
-				            <input class="form-control" type='number' name='year' id='year' required="true"/>
-				     </div>
-				     <div class="form-group">
-				            <label>Faculty</label>
-				            <input class="form-control" type='text' name='faculty' id='faculty' required="true"/>
-				     </div>
-				     <div class="form-group">
-				            <label>Degree</label>
-				            <input class="form-control" type='text' name='degree' id='degree' required="true"/>
+				            <input class="form-control" type='password' name='passwordadm' id='passwordadm' />
 				     </div>
 				        
 				            
-				   	 <input class="btn btn-default" type='submit' id='registerBtn' name='registerBtn' value='Register' />        
+				   	 <input class="btn btn-default" type='submit' id='loginadmBtn' name='loginadmBtn' value='Log In' />        
 				   
 				</form>
 			</div>
+			
 		</div>
+		
 </div>
 	
 </div>
+	
+			
+			
 
 <?php include 'footer.php';?>
