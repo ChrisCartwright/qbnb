@@ -56,8 +56,7 @@ if(isset($_GET['logout'])){
 					
 					echo "<h3>" .$myrow['Address_Number']." " .$myrow['Address_Name']. "</h3>";
 					
-					$property= $myrow['Property_ID'];
-					
+									
 					echo "<a href='EditProperty.php?id=" . $myrow['Property_ID'] . "'>Edit/Delete</a>";
 					
 					
@@ -79,7 +78,7 @@ if(isset($_GET['logout'])){
 				</div>
 				
 							
-				<div class="col-md-4 col-md-offset-2">
+				<div class="col-md-4 col-md-offset-0">
 				<div class="well">
 				<h2>View Bookings on Properties</h2>
 				
@@ -134,10 +133,70 @@ if(isset($_GET['logout'])){
 				}
 										
 				?>
-				
-				
 				</div>
 				</div>
+				
+				<div class="col-md-4 col-md-offset-0">
+				<div class="well">
+				<h2>View Comments on Properties</h2>
+				
+				<br>
+				
+				
+				
+				<?php if(isset($_SESSION['member_id'])){
+				include_once 'config/connection.php'; 
+				$query = "SELECT Address_Name, Address_Number, Property_ID, Text from property join comment using (Property_ID) WHERE property.Member_ID = ?";
+				$stmt = $con ->prepare($query); 
+				$stmt->bind_Param("i", $_SESSION['member_id']);
+				$stmt->execute();
+				
+				
+				
+				
+				$result = $stmt->get_result();
+				
+				if($result-> num_rows >0){
+					
+					echo "<table>";
+					echo "<tr>";
+					echo "<th><h3>Address</h3></th>";
+					echo "<th><h3>Comment</h3></th>";
+					echo "<th><h3>Reply to Comment</h3></th>";
+					echo "</tr>";
+					
+					
+					while($myrow = $result->fetch_assoc()){
+					
+					if ($myrow['Text'] == ""){
+						
+					}
+					
+					else{
+					
+					echo "<tr>";
+                   	echo"<td>".$myrow['Address_Number']." " .$myrow['Address_Name']."</td>";
+					echo"<td>".$myrow['Text']."</td>";
+					//echo "<td><a href='editbookings.php?id=" . $myrow['Property_ID'] . "'>Edit</a></td>";
+					echo "</tr>"; 
+					}
+					
+					
+										
+				} 
+				    echo "</table>";
+				
+				 }
+				else {echo "No Bookings";
+				}
+				} 
+										
+				?>
+				</div>
+				</div>
+				
+				
+				
 				</div>
 </div>
 

@@ -17,7 +17,7 @@ if(isset($_GET['logout'])){
 
   ?>
   
- <?php //include 'navigation.php'; ?>
+ <?php include 'navigation.php'; ?>
  
   <?php
   if(isset($_POST['deleteBtn'])){
@@ -105,7 +105,6 @@ if(isset($_GET['logout'])){
 					echo "<th><h3>Address</h3></th>";
 					echo "<th><h3>Start Date</h3></th>";
 					echo "<th><h3>End Date</h3></th>";
-					echo "<th><h3>Edit</h3></th>";
 					echo "</tr>";
 					
 					while($myrow = $result->fetch_assoc()){
@@ -115,7 +114,6 @@ if(isset($_GET['logout'])){
                    	echo"<td>".$myrow['Address_Number']." " .$myrow['Address_Name']."</td>";
 					echo"<td>".$myrow['StartDate']."</td>";
 					echo"<td>".$myrow['EndDate']."</td>";
-					echo "<td><a href='ConsumerEditBooking.php?id=" . $myrow['Booking_ID'] . "'>Delete/Add Comment</a></td>";
 					echo "</tr>"; 
 					
 										

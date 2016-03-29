@@ -50,8 +50,7 @@
                             <li><a href="register.php">Register A Property</a></li>
 							<li><a href="property.php">Manage Properties</a></li>
 							<li><a href="bookings.php">Manage Bookings</a></li>
-							<li><a href="editbookings.php">Edit Bookings</a></li>
-                            <li role="separator" class="divider"></li>
+							<li role="separator" class="divider"></li>
                             <li><a href="index.php?logout=1">Logout</a></li>
                           </ul>
                         </li> 
