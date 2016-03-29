@@ -23,6 +23,7 @@ if(isset($_SESSION['admin_id'])){
 	die();
 }
  ?>
+ <?php include 'navigation.php'; ?>
  
  <?php
 
@@ -73,7 +74,7 @@ if(isset($_POST['loginBtn'])){
  }
 ?>
 
-<?php include 'navigation.php'; ?>
+
 <div class="register-page">
 	<h1 style="text-align: center">Administration Login</h1>
 	<div class="well">

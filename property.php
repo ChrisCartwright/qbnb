@@ -87,6 +87,7 @@ if(isset($_GET['logout'])){
 				<style>
 				table, th, td {
 				border: 1px solid black;
+				padding: 10px;
 				}
 				</style>
 				

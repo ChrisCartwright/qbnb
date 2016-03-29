@@ -41,7 +41,6 @@ if(!isset($_SESSION['member_id'])){
 		$stmt->bind_Param("iiisssiiiiiiiiiiiii", $_SESSION['member_id'], $_POST['district'], $_POST['address'], $_POST['street_name'], $_POST['postal_code'], $_POST['type'], $_POST['price'], $_POST['bathroom'], $_POST['Pool'], $_POST['Laundry'], $_POST['Internet'], $_POST['Parking'], $_POST['AC'], $_POST['Heat'], $_POST['Gym'], $_POST['Pets'], $_POST['Smoking'], $_POST['Wheelchair'], $_POST['bedroom']);
 		$stmt->execute();
 		
-	//How do we insert the property_id? and what do we do about member_id (get from login?)
 	
 	header("Location: index.php");
 	die();

@@ -14,7 +14,9 @@ if(isset($_GET['logout'])){
  ?>
  <?php 
  $id = $_GET["id"];
-
+ $date = date("y:m:d");
+ $time = date("H:i:s");                         
+ 
  ?>
    
  <?php include 'navigation.php'; ?>
@@ -71,15 +73,20 @@ if(isset($_GET['logout'])){
  <?php
   if(isset($_POST['commentBtn'])){
 	include_once 'config/connection.php'; 
+	 $memid = $_SESSION['member_id'];
+	 $rating =$_POST['rating'];
+	 $comment = $_POST['comment'];
+	 
 
-	$query = "INSERT INTO comment(Member_ID, Property_ID, Rating, Date, Time, Text) VALUES (?,?,?,?,?,?)";
+	//$query = "INSERT INTO comment(Member_ID, Property_ID, Rating, Date, Time, Text) VALUES (?,?,?,?,?,?)";
+	$query = "INSERT INTO comment (Member_ID, Property_ID, Rating, Date, Time, Text) VALUES ($memid, $propertyid, $rating, '$date', '$time', '$comment')";
 	if($stmt = $con ->prepare($query)) {
-		$stmt->bind_Param("iiiiis", $_SESSION['member_id'], $_POST[$propertyid], $_POST['rating'], $_POST['comment']);
+		//$stmt->bind_Param("iiidts", $_SESSION['member_id'], $_POST['$propertyid'], $_POST['rating'], $_POST['$date'], $_POST['$time'], $_POST['comment']);
 		$stmt->execute();
 		
-	//How do we insert the property_id? and what do we do about member_id (get from login?)
 	
-	header("Location: index.php");
+	
+	header("Location: bookings.php");
 	die();
 	}
 	else{
@@ -96,7 +103,7 @@ if(isset($_GET['logout'])){
  
  <div class="form-group">     
 	<label>Rating:
-		<select name="district" >
+		<select name="rating" >
 			<option value="">Select One..</option>
 			<option value="1">1</option>
 			<option value="2">2</option>

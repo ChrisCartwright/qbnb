@@ -10,6 +10,7 @@
 if(isset($_GET['logout'])){
 	//Destroy the user's session.
 	$_SESSION['member_id']=null;
+	$_SESSION['admin_id']=null;
 	session_destroy();
 }
  ?>
@@ -23,6 +24,15 @@ if(isset($_SESSION['member_id'])){
 	die();
 }
  ?>
+  <?php
+ //check if the user is already logged in and has an active session
+if(isset($_SESSION['admin_id'])){
+	//Redirect the browser to the admin home page and kill this page.
+	header("Location: adminhome.php");
+	die();
+}
+ ?>
+ <?php include 'navigation.php'; ?>
  
  <?php
 
@@ -126,7 +136,7 @@ if(isset($_POST['loginBtn'])){
  
 ?>
 
-<?php include 'navigation.php'; ?>
+
 <div class="register-page">
 	<h1 style="text-align: center">Queen's BnB Sign Up or Login</h1>
 	<div class="well">

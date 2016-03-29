@@ -12,6 +12,7 @@ if(isset($_GET['logout'])){
 	session_destroy();
 }
  ?>
+ <?php include 'navigation.php'; ?>
 
  <?php
  //want to display as editable form like in profile 
@@ -30,7 +31,7 @@ if(isset($_GET['logout'])){
  }
  
  else {
-	 echo "test";
+	 
 	header("Location: admin.php");
 	die();
 	}
@@ -65,12 +66,8 @@ if(isset($_GET['logout'])){
  }
   
  ?>
- 
- 
- 
- 
 
- <?php include 'navigation.php'; ?>
+
 		<div class="register-page">
 			<h1>Welcome</h1>
 				
@@ -110,57 +107,211 @@ if(isset($_GET['logout'])){
 				<div class="col-md-4 col-md-offset-0">
 				<div class="well">
 				<h2>Member Management</h2>
-				 <form name='search' id='search' action='adminHome.php' method='post'>
-					<?php if(isset($_POST['searchBtn'])){
-							include_once 'config/connection.php';
-							
-							$query = "SELECT address_number, address_name FROM member join property WHERE Member_ID =?";  
-					
-							if($stmt = $con ->prepare($query)) 
-							{
-								$stmt->execute();
-								$result = $stmt->get_result();
-								while($myrow = $result->fetch_assoc()) {
-								}
-								$memberid= $myrow['member_id'];
-								
-								
-							}
-							else{
-								echo "query failed";
-							}
-						}
-					?>
-					
+				 <form name='search' id='search' action='adminHome.php' method='post'>	
 					<div class="form-group">
 				            <label>Member ID</label>
-				            <input class="form-control" type='text' name='memberid' id='memberid' required="true" value="<?=$memberid?>"/>
+				            <input class="form-control" type='text' name='member_id' id='member_id' required="true" />
 				     </div>
-				     </fieldset>
-					<input class="btn btn-default" type='submit' id='searchBtn' name='searchBtn' value='Search' /> 
+				     
+					<input class="btn btn-default" type='submit' id='searchmemBtn' name='searchmemBtn' value='Search' /> 
 				
+									
+				<?php
+				
+					
+					 //check if the login form has been submitted
+					if(isset($_POST['searchmemBtn']))
+					{
+ 
+					// include database connection
+					include_once 'config/connection.php'; 
+					
+					// SELECT query
+						$query = "SELECT * FROM member WHERE Member_ID=?";
+						// prepare query for execution
+						if($stmt = $con->prepare($query)){
+						// bind the parameters. This is the best way to prevent SQL injection hacks.
+						$stmt->bind_Param("i", $_POST['member_id']);
+						
+						 // Execute the query
+						$stmt->execute();
+						/* resultset */
+						$result = $stmt->get_result();
+						$myrow = $result->fetch_assoc();
+						// Get the number of rows returned
+						$num = $result->num_rows;
+						if($num>0){
+							
+							header("Location: admineditmember.php?id=" . $myrow['Member_ID'] . "");
+							die();
+							
+						}
+						/* echo "<h2>Properties</h2>";
+						if($num>0){
+							//If the username/password matches a user in our database
+							//Read the user details
+							while($myrow = $result->fetch_assoc()){
+							echo "<h4>" .$myrow['Address_Number']." " .$myrow['Address_Name']. "</h4>";
+							}							
+						} else {
+							//If the member id doesn't matche a user in our database
+							// Display an error message and the login form
+							echo "No Properties";
+						}
+						}  */
+						else {
+							echo "failed to prepare the SQL";
+						}
+				 }
+				 }
+				?> 
 			
-					
-				<h2>Member Details</h2>
-				 <form name='search' id='search' action='adminHome.php' method='post'>
-					
-					<input class="btn btn-default" type='submit' id='searchBtn' name='searchBtn' value='Host Data' />
-					<input class="btn btn-default" type='submit' id='searchBtn' name='searchBtn' value='Consumer Data' />
-					<input class="btn btn-default" type='submit' id='searchBtn' name='searchBtn' value='Property Data' />
-					
-					<h3>Properties</h3>
-					<!-- want to display list of properties here each with a delete button to its left-->
-					
-				     </fieldset>
-					 
-					
-					<input class="btn btn-default" type='submit' id='searchBtn' name='searchBtn' value='Delete Member' />
 				
 				</form>
+				</div>
+				</div>
+				</div>
+				
+				<div class="col-md-4 col-md-offset-4">
+				<div class="well">
+				<h2>Accomodation Management</h2>
+				 <form name='search' id='search' action='adminHome.php' method='post'>	
+					<div class="form-group">
+				            <label>Property ID</label>
+				            <input class="form-control" type='text' name='propertyid' id='propertyid' required="true" />
+				     </div>
+				     
+					<input class="btn btn-default" type='submit' id='searchpropBtn' name='searchpropBtn' value='Search Accomodation' /> 
+				
+									
+				<?php
+				
+					
+					 //check if the login form has been submitted
+					if(isset($_POST['searchpropbtn']))
+					{
+ 
+					// include database connection
+					include_once 'config/connection.php'; 
+					
+					// SELECT query
+						$query = "SELECT * FROM property WHERE Property_ID=?";
+						// prepare query for execution
+						if($stmt = $con->prepare($query)){
+						// bind the parameters. This is the best way to prevent SQL injection hacks.
+						$stmt->bind_Param("i", $_POST['propertyid']);
+						
+						 // Execute the query
+						$stmt->execute();
+						/* resultset */
+						$result = $stmt->get_result();
+						$myrow = $result->fetch_assoc();
+						// Get the number of rows returned
+						$num = $result->num_rows;
+						if($num>0){
+							
+							header("Location: admineditproperty.php?id=" . $myrow['Property_ID'] . "");
+							die();
+							
+						}
+						/* echo "<h2>Properties</h2>";
+						if($num>0){
+							//If the username/password matches a user in our database
+							//Read the user details
+							while($myrow = $result->fetch_assoc()){
+							echo "<h4>" .$myrow['Address_Number']." " .$myrow['Address_Name']. "</h4>";
+							}							
+						} else {
+							//If the member id doesn't matche a user in our database
+							// Display an error message and the login form
+							echo "No Properties";
+						}
+						}  */
+						else {
+							echo "failed to prepare the SQL";
+						}
+				 }
+				 }
+				?> 
+			
+				
+				</form>
+				</div>
+				</div>
+				</div>
+				
+				<!--				
+				<br>
+				<input class="btn btn-default" type='submit' id='dmBtn' name='dmBtn' value='Delete Member' />
+							
 			</div>
 			</div>
+				
+					<div class="col-md-4 col-md-offset-0">
+					<div class="well">
+					<h2>Member Details<h2>
+					 <form name='search' id='search' action='adminHome.php' method='get'>
+						
+						<?php
+					
+					/* if(isset($_POST['searchBtn'])){
+ 
+					
+					include_once 'config/connection.php'; 
+					
+					
+						$query = "SELECT * FROM booking join property using (property_id) WHERE Booking.Member_ID=?";
+						
+						if($stmt = $con->prepare($query))
+						{ */
+						
+					/* 	$stmt->bind_Param("i", $_POST['member_id']);
+					
+						 
+						$stmt->execute();
+						
+						$result = $stmt->get_result();
+						
+						
+						$num = $result->num_rows;
+						
+						echo "<h3>Property Data</h3>";
+						if($num>0){
+							
+							while($myrow = $result->fetch_assoc()){
+							echo "<h4>" .$myrow['Address_Number']."  " .$myrow['Address_Name']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$myrow['StartDate']. "</h4>";
+							}	
+						}
+						
+						echo "<h3>Host Data</h3>";
+						if($num>0){
+							
+							while($myrow = $result->fetch_assoc()){
+							echo "<h4>" .$myrow['Address_Name']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$myrow['StartDate']. "</h4>";
+							}	
+						}
+
+
+						
+						echo "<h3>Consumer Data</h3>";
+						if($num>0){
+							
+							while($myrow = $result->fetch_assoc()){
+							echo "<h4>" .$myrow['StartDate']. "</h4>";
+							}	
+						} 
+						
+						}
+					} */
+						?> 
+					
+						
+					</fieldset>
+					</form>
+					</div>
+					</div>
 			</div>
-			</div>
+			</div>-->
 
 
 <?php include 'footer.php';?>

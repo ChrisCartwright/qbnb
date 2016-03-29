@@ -30,13 +30,12 @@
                         </li> 
 						
 						
-                       <?php else: ?>
-                        					
+                                            					
 						
-                        <?php if(isset($_SESSION['member_id'])): ?>
+                        <?php elseif(isset($_SESSION['member_id'])): ?>
 						
                         <!--<a href="index.php?logout=1" id="login">Logout</a>-->
-						<li class="hidden"><a href="#">Administration</a></li>
+						<!--<li class="hidden"><a href="#">Administration</a></li>-->
 						
 						<li>
                 		<a href="search.php">Find a Place</a>
@@ -56,8 +55,22 @@
                         </li> 
 						
 						<?php else: ?>
-						
+						<li>	
+                		<a href="index.php">Find a Place</a>
+                		</li>
+                		<li><a href="register.php">Become a Host</a>
+                	</li>
+                	<li>
+                		<a href="register.php">Register</a>
+                	</li>
 						<li>
+                        <?php if(isset($_SESSION['id'])): ?>
+                        <a href="home.php?logout=1" id="logout">Logout</a>
+                        <?php else: ?>
+                        <a href="login.php" id="login">Login</a>
+                        <?php endif; ?>
+                    </li>
+						<!--<li>
 						<a href="admin.php">Administration</a>
 						</li>
 						
@@ -67,12 +80,12 @@
 						
                         <li>
                         <a href="login.php" id="login">Member</a>
-						</li>
+						</li>-->
 						<?php endif; ?>
 						
 						 
 						
-					 <?php endif; ?>
+					 <?php //endif; ?>
                        
                         
                 

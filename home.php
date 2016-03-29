@@ -30,7 +30,7 @@ if(isset($_GET['logout'])){
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li>	
                 		<a href="index.php">Find a Place</a>
                 		<li>
                 		<a href="register.php">Become a Host</a>
@@ -40,9 +40,9 @@ if(isset($_GET['logout'])){
                 	</li>
                 	<li>
                         <?php if(isset($_SESSION['id'])): ?>
-                        <a href="home.php?logout=1" id="login">Logout</a>
+                        <a href="home.php?logout=1" id="logout">Logout</a>
                         <?php else: ?>
-                        <a href="index.php" id="login">Login</a>
+                        <a href="login.php" id="login">Login</a>
                         <?php endif; ?>
                     </li>
                         

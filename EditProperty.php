@@ -57,19 +57,6 @@ if(isset($_GET['logout'])){
   $Wheelchair = $myrow['Wheelchair'];
   $bedroom = $myrow['Bedroom'];
   
-  if($district == 1){
-	  $districtname='Central';
-  }
-  elseif ($district == 2){
-	  $districtname='East End';
-  }
-  elseif ($district == 3){
-	  $districtname='South End';
-  }
-  else{
-	  $districtname='West End';
-  }
-  
   
  ?>
 	
@@ -101,17 +88,16 @@ if(isset($_GET['logout'])){
   echo $memid;
   
 	$query = "UPDATE property SET District_ID = '$district', Address_Number= $address, Address_Name= '$street_name', Address_Postal='$postal_code', Type='$type', Price=$price, Bathroom=$bathroom, Pool=$Pool, Laundry=$Laundry, Internet=$Internet, Parking=$Parking, AC=$AC, Heat=$Heat, Gym=$Gym, Pets=$Pets, Smoking=$Smoking, Wheelchair=$Wheelchair, Bedroom=$bedroom WHERE Property_ID='".$id."'";
-	//$query = "UPDATE property SET District_ID = '$district' WHERE Property_ID=6";  
+	
 	$stmt = $con->prepare($query); 
-	//$stmt->bind_Param("i", $_SESSION['member_id']);
+	
 	// Execute the query
         if($stmt->execute()){
 			
            header("Location: property.php");
 		   
 			die();
-			$message = "wrong answer";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			
         } 
 		else{
 			
