@@ -18,6 +18,12 @@ html, body {
 
 }
 
+.comment-divide {
+    background-color: black;
+    color: black;
+    border-color: black;
+}
+
 
 
 .login-page {
