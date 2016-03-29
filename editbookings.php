@@ -48,6 +48,7 @@ if(isset($_GET['logout'])){
   $start = $myrow['StartDate'];
   $end = $myrow['EndDate'];
   $propertyid = $myrow['Property_ID'];
+  $status = $myrow['Status'];
   
   
   
@@ -72,20 +73,38 @@ if(isset($_GET['logout'])){
   }
   
   ?>
+  <?php
+  if(isset($_POST['statusBtn'])){
+	  $status = $_POST['status'];
+	  $query = "UPDATE booking SET Status= '$status' WHERE Booking_ID='".$id."'";
+	  $stmt = $con->prepare($query); 
+	
+	// Execute the query
+        if($stmt->execute()){
+			
+			
+        } 
+		else{
+			
+            echo "Unable to update record";
+        }	 
+  } 
+  ?>
+
 
   
 
  <?php if($result-> num_rows >0): ?>
 
-<form name='status' id='status' action='editbookings.php?id=<?=$id?>' method='post'>
+<form name='statusform' id='statusform' action='editbookings.php?id=<?=$id?>' method='post'>
 
 <br>
 <div class="form-group">     
 	<label>Status:
-		<select name="district" required="true">
-			<option value="">Select...</option>
-			<option value="1">Confirm</option>
-			<option value="2">Rejected</option>
+		<select name="status" required="true">
+			<option value="0" <?php if ($status == 0) echo 'selected="selected"';?>>Requested</option>
+			<option value="1" <?php if ($status == 1) echo 'selected="selected"';?>>Confirm</option>
+			<option value="2" <?php if ($status == 2) echo 'selected="selected"';?>>Rejected</option>
 		</select>
 	</label>
 </div>	   
@@ -98,52 +117,6 @@ if(isset($_GET['logout'])){
 <?php else: ?>
 <?php endif; ?>
  
-<!--<div class="col-md-4 col-md-offset-2">
-<div class="well">
-<h2>Reply to a Comment</h2>
-
-<?php /* if(isset($_SESSION['member_id'])){
-	include_once 'config/connection.php'; 
-	$query = "SELECT * from comment join property using (Property_ID) WHERE Booking_ID='".$id."'";
-	$stmt = $con ->prepare($query); 
-	//$stmt->bind_Param("i", $_SESSION['member_id']);
-	$stmt->execute();
-							
-				
-	$result = $stmt->get_result();
-		
-		if($result-> num_rows >0){
-			echo "<table>";
-			echo "<tr>";
-			echo "<th><h3>Address</h3></th>";
-			echo "<th><h3>Comment</h3></th>";
-			echo "<th><h3>Rating</h3></th>";
-			echo "</tr>";
-					
-			while($myrow = $result->fetch_assoc()){
-								
-			echo "<tr>";
-            echo"<td>".$myrow['Address_Number']." " .$myrow['Address_Name']."</td>";
-			echo"<td>".$myrow['text']."</td>";
-			echo"<td>".$myrow['rating']."</td>";
-			//echo "<td><a href='ConsumerEditBooking.php?id=" . $myrow['Booking_ID'] . "'>Delete/Add Comment</a></td>";
-			echo "</tr>"; 
-					
-										
-			}
-			echo "</table>";
-			
-			}
-			else {echo "No Bookings";
-				}
-				} */
-										
-				?>
-				 </table>
-
-</div>
-</div>-->
-
 
 </div>
 </div>

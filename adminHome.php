@@ -113,7 +113,7 @@ if(isset($_GET['logout'])){
 				            <input class="form-control" type='text' name='member_id' id='member_id' required="true" />
 				     </div>
 				     
-					<input class="btn btn-default" type='submit' id='searchmemBtn' name='searchmemBtn' value='Search' /> 
+					<input class="btn btn-default" type='submit' id='searchmemBtn' name='searchmemBtn' value='Search Member' /> 
 				
 									
 				<?php
@@ -163,17 +163,14 @@ if(isset($_GET['logout'])){
 				<div class="col-md-4 col-md-offset-0">
 				<div class="well">
 				<h2>Accomodation Management</h2>
-				 <form name='searchprop' id='searchprop' action='adminHome.php' method='post'>	
+				 <form name='searchprop' id='searchprop'  method='post'>	
 					<div class="form-group">
 				            <label>Property ID</label>
 				            <input class="form-control" type='text' name='propertyid' id='propertyid' required="true" />
 				     </div>
 				     
-					<input class="btn btn-default" type='submit' id='searchpropBtn' name='searchpropBtn' value='Search Accomodation' /> 
-				
-									
-				<?php
-									
+					
+				<?php				
 					 //check if the login form has been submitted
 					if(isset($_POST['searchpropBtn']))
 					{
@@ -204,6 +201,14 @@ if(isset($_GET['logout'])){
 							die(); 
 							//<meta http-equiv="Location" content="http://example.com/">
 							
+							/* echo '<script type="text/javascript">';
+							echo 'window.location.href="'.$id.'";';
+							echo '</script>';
+							echo '<noscript>';
+							echo '<meta http-equiv="refresh" content="0;url='.$id.'" />';
+							echo '</noscript>'; exit; */
+
+							
 						}
 						
 						else {
@@ -211,8 +216,8 @@ if(isset($_GET['logout'])){
 						}
 				 }
 				 }
-				?> 
-			
+				 ?> 
+			<input class="btn btn-default" type='submit' id='searchpropBtn' name='searchpropBtn' value='Search Accomodation' /> 
 				
 				</form>
 				</div>
