@@ -85,8 +85,7 @@ if(isset($_GET['logout'])){
   $Wheelchair = $_POST['Wheelchair'];
   $bedroom = $_POST['bedroom'];
   $memid = $_SESSION['member_id'];
-  echo $memid;
-  
+ 
 	$query = "UPDATE property SET District_ID = '$district', Address_Number= $address, Address_Name= '$street_name', Address_Postal='$postal_code', Type='$type', Price=$price, Bathroom=$bathroom, Pool=$Pool, Laundry=$Laundry, Internet=$Internet, Parking=$Parking, AC=$AC, Heat=$Heat, Gym=$Gym, Pets=$Pets, Smoking=$Smoking, Wheelchair=$Wheelchair, Bedroom=$bedroom WHERE Property_ID='".$id."'";
 	
 	$stmt = $con->prepare($query); 

@@ -39,7 +39,7 @@ if(isset($_GET['logout'])){
  
  
  <div class="register-page">
-			<h1>Memeber Management</h1>
+			<h1>Member Management</h1>
 				
 				<div class="row">
 				<div class="col-md-4">
@@ -78,7 +78,7 @@ if(isset($_GET['logout'])){
 						
 				<div class="col-md-4 col-md-offset-0">
 				<div class="well">
-				<h2>View Memeber's Bookings</h2>
+				<h2>View Member's Bookings</h2>
 				<br>
 				<style>
 				table, th, td {

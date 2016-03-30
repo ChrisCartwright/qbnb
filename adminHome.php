@@ -169,7 +169,7 @@ if(isset($_GET['logout'])){
 				            <input class="form-control" type='text' name='propertyid' id='propertyid' required="true" />
 				     </div>
 				     
-					
+					<input class="btn btn-default" type='submit' id='searchpropBtn' name='searchpropBtn' value='Search Accomodation' /> 
 				<?php				
 					 //check if the login form has been submitted
 					if(isset($_POST['searchpropBtn']))
@@ -193,22 +193,9 @@ if(isset($_GET['logout'])){
 						// Get the number of rows returned
 						$num = $result->num_rows;
 						if($num>0){
-							//echo '<meta http-equiv="refresh" content="1; URL=admineditmember.php?id=" . $myrow['Property_ID'] . "" />';
-							//header("Location: localhost/qbnb/admineditmember.php?id=" . $myrow['Member_ID'] . "");
-							//die(); 
-							//echo $myrow['Property_ID'];
-							header("Location: admineditproperty.php?id=" . $myrow['Property_ID'] . "");
-							die(); 
-							//<meta http-equiv="Location" content="http://example.com/">
-							
-							/* echo '<script type="text/javascript">';
-							echo 'window.location.href="'.$id.'";';
-							echo '</script>';
-							echo '<noscript>';
-							echo '<meta http-equiv="refresh" content="0;url='.$id.'" />';
-							echo '</noscript>'; exit; */
-
-							
+														
+							echo ("<script>location.href='admineditproperty.php?id=" . $myrow['Property_ID'] . "'</script>");					
+														
 						}
 						
 						else {
@@ -217,7 +204,7 @@ if(isset($_GET['logout'])){
 				 }
 				 }
 				 ?> 
-			<input class="btn btn-default" type='submit' id='searchpropBtn' name='searchpropBtn' value='Search Accomodation' /> 
+			
 				
 				</form>
 				</div>

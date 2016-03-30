@@ -23,7 +23,7 @@
 						<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration<span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li><a href="admin.php">Home</a></li>
+                            <li><a href="adminHome.php">Home</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="index.php?logout=1">Logout</a></li>
                           </ul>

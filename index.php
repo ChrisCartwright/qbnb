@@ -44,7 +44,7 @@ if(isset($_GET['logout'])){
 <div class="jumbotron">
 	<div class="container">
   		<h1>Welcome Home</h1>
-  		<p>Use the trusted Queen's Alumnae network when searching for a place to stay</p>
+  		<p>Use the trusted Queen's Alumni network when searching for a place to stay</p>
 		 <!-- <div class="row">
 		  <div class="col-lg-6 col-lg-offset-3">
 		    <div class="input-group">
