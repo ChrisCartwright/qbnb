@@ -21,18 +21,18 @@ if(isset($_GET['logout'])){
  
  <?php
   if(isset($_POST['deleteBtn'])){
-	 // include_once 'config/connection.php'; 
+	  include_once 'config/connection.php'; 
 	
-	//$query = "DELETE FROM property WHERE Property_ID= '".$id."'";
-	//$stmt = $con->prepare($query);
-	//if($stmt->execute()){
+	$query = "DELETE FROM property WHERE Property_ID= '".$id."'";
+	$stmt = $con->prepare($query);
+	if($stmt->execute()){
 	
 		header("Location: adminHome.php");
 		die();
-	//}
-	//else{
-		//echo "Unable to update record";
-        //}	
+	}
+	else{
+		echo "Unable to update record";
+        }	
 			
  } 
  ?>
