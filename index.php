@@ -60,25 +60,25 @@ if(isset($_GET['logout'])){
 
 <div class="container">
 	<div class="row">
-		<div class="col-lg-12">
-			
-			<div class="col-lg-6">
-			
-			</div>
-			<div class="col-lg-6">
-				
-			</div>
+		<div class="col-md-12">
+			<h2>What is QBnB?</h2>
+			<p>Queen's Bed and Breakfast is a network of Queen's Alumnae that facilitates easy and trusted renting of properties
+				in the Ottawa area. All bookings are for one week starting on Saturdays to ensure you get that luxurious vacation 
+				you deserve. Sign up today! All you need is the be a Queen's Alumnae.</p>
+		</div>
+	</div>
+	<div class="row">			
+		<div class="col-md-6">
+			<h2>Trusted</h2>
+			<p>Rent from fellow Queen's Alumnae to ensure your accomadation is just what you're looking for</p>
+		</div>
+		<div class="col-md-6">
+			<h2>Fun!</h2>
+			<p>Renting from Queen's Alumnae is not only safe, but fun as well. </p>
 		</div>
 	</div>
 </div>
 
-<div class="container">
-	<div class="row">
-		<div class="col-lg-12">
-			
-		</div>
-	</div>
-</div>
 
 
 <?php include 'footer.php';?>

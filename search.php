@@ -184,15 +184,27 @@ if(isset($_GET['logout'])){
   if(isset($_POST['searchBtn'])){
 	include_once 'config/connection.php'; 
 
+	/*$query = "SELECT * FROM property WHERE Price LIKE '%" . $_POST['price'] . "%' AND District_ID LIKE '%" . $_POST['district'] . "%' AND Type LIKE '%" . $_POST['type'] . "%' AND Bedroom LIKE '%" . $_POST['bedroom'] . "%' AND Bathroom LIKE '%" . $_POST['bathroom'] . "%' AND Pool LIKE '%" . $_POST['Pool'] . "%' AND Laundry LIKE '%" . $_POST['Laundry'] . "%' AND Internet LIKE '%" . $_POST['Internet'] . "%' AND Parking LIKE '%" . $_POST['Parking'] . "%' AND AC LIKE '%" . $_POST['AC'] . "%' AND Heat LIKE '%" . $_POST['Heat'] . "%' AND Gym LIKE '%" . $_POST['Gym'] . "%' AND Pets LIKE '%" . $_POST['Pets'] . "%' AND Smoking LIKE '%" . $_POST['Smoking'] . "%' AND Wheelchair LIKE '%" . $_POST['Wheelchair'] . "%' "; */
+
 
 	 
-	$query = "SELECT * FROM property WHERE Price LIKE '%" . $_POST['price'] . "%' AND District_ID LIKE '%" . $_POST['district'] . "%' AND Type LIKE '%" . $_POST['type'] . "%' AND Bedroom LIKE '%" . $_POST['bedroom'] . "%' AND Bathroom LIKE '%" . $_POST['bathroom'] . "%' AND Pool LIKE '%" . $_POST['Pool'] . "%' AND Laundry LIKE '%" . $_POST['Laundry'] . "%' AND Internet LIKE '%" . $_POST['Internet'] . "%' AND Parking LIKE '%" . $_POST['Parking'] . "%' AND AC LIKE '%" . $_POST['AC'] . "%' AND Heat LIKE '%" . $_POST['Heat'] . "%' AND Gym LIKE '%" . $_POST['Gym'] . "%' AND Pets LIKE '%" . $_POST['Pets'] . "%' AND Smoking LIKE '%" . $_POST['Smoking'] . "%' AND Wheelchair LIKE '%" . $_POST['Wheelchair'] . "%'"; 
+	$query = "SELECT * FROM property JOIN district using (District_ID) WHERE Price LIKE '%" . $_POST['price'] . "%' AND District_ID LIKE '%" . $_POST['district'] . "%' AND Type LIKE '%" . $_POST['type'] . "%' AND Bedroom LIKE '%" . $_POST['bedroom'] . "%' AND Bathroom LIKE '%" . $_POST['bathroom'] . "%' AND Pool LIKE '%" . $_POST['Pool'] . "%' AND Laundry LIKE '%" . $_POST['Laundry'] . "%' AND Internet LIKE '%" . $_POST['Internet'] . "%' AND Parking LIKE '%" . $_POST['Parking'] . "%' AND AC LIKE '%" . $_POST['AC'] . "%' AND Heat LIKE '%" . $_POST['Heat'] . "%' AND Gym LIKE '%" . $_POST['Gym'] . "%' AND Pets LIKE '%" . $_POST['Pets'] . "%' AND Smoking LIKE '%" . $_POST['Smoking'] . "%' AND Wheelchair LIKE '%" . $_POST['Wheelchair'] . "%'"; 
 
 
 	if($stmt = $con ->prepare($query)) {
 		$stmt->execute();
 		$result = $stmt->get_result();
+		$count = 0;
  		while($myrow = $result->fetch_assoc()) {
+ 			$count = $count + 1;
+ 			$commentQuery = "SELECT * FROM comment WHERE comment.Property_ID =" . $myrow["Property_ID"];
+ 			if($commentStmt = $con ->prepare($commentQuery)) {
+				$commentStmt->execute();
+				$commentResult = $commentStmt->get_result();
+			}
+			else {
+				echo "get comments failed";
+			}
  			if($myrow["Pool"] == 1) {
  				$pool = 'Yes';
  			}
@@ -260,9 +272,10 @@ if(isset($_GET['logout'])){
 							<h3>' . $myrow["Address_Number"] . ' ' . $myrow["Address_Name"] . '</h3>
 							<h4>Price/week: ' . $myrow["Price"] . '</h4>
 							<p>Postal Code: ' . $myrow["Address_Postal"] . '</p>
-							<p>District</p>
+							<p>Availability: ' . $myrow["Name"] . '</p>
 						</div>
 						<div class="col-md-3" style="text-align: right">
+							<p>District: ' . $myrow["Name"] . '</p>
 							<p>Type: ' . $myrow["Type"] . '</p>
 							<p>Number of Bedrooms: ' . $myrow["Bedroom"] . '</p>
 							<p>Number of Bathrooms: ' . $myrow["Bathroom"] . '</p>
@@ -275,14 +288,30 @@ if(isset($_GET['logout'])){
 							<p>Laundry: ' . $laundry . '</p>
 							<p>Pool: ' . $pool . '</p>
 							<p>Pets: ' . $pets . '</p>
+							<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample'.$count.'" aria-expanded="false" aria-controls="collapseExample">
+  								View Comments
+							</button>
 						</div>
 						<div class="col-md-3" style="text-align: right">
 							<p>Heat: ' . $heat . '</p>
 							<p>A/C: ' . $ac . '</p>
 							<p>Gym: ' . $gym . '</p>
 							<p>Smoking: ' . $smoking . '</p>
+							<a href=createBooking.php?id=' . $myrow['Property_ID'] . '><button class="btn btn-primary">Book!</button></a>
 						</div>
-						
+					</div>
+					<hr class="comment-divide">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="collapse" id="collapseExample'.$count.'">';
+								while($commentRow = $commentResult->fetch_assoc()) {
+									echo '
+									<p>Rating: '.$commentRow["Rating"].' Stars</p>
+	  								<p>Comment: '.$commentRow["Text"].'</p>
+	  								<hr class="comment-divide">';
+	  							}	
+							echo '</div>
+						</div>
 					</div>
 				</div>'
 				;
