@@ -202,7 +202,7 @@ if(isset($_GET['logout'])){
 		$count = 0;
  		while($myrow = $result->fetch_assoc()) {
  			$count = $count + 1;
- 			$commentQuery = "SELECT Text, Rating FROM comment WHERE comment.Property_ID =" . $myrow["Property_ID"];
+ 			$commentQuery = "SELECT Text, Rating, Reply FROM comment WHERE comment.Property_ID =" . $myrow["Property_ID"];
  			$averageQuery = "SELECT ROUND(AVG(Rating),1) AS average FROM comment WHERE comment.Property_ID=".$myrow["Property_ID"];
  			if($commentStmt = $con ->prepare($commentQuery)) {
 				$commentStmt->execute();
@@ -326,15 +326,21 @@ if(isset($_GET['logout'])){
 								echo '<strong><p>Average Rating:</strong> No Ratings Available</p>';
 								while($commentRow = $commentResult->fetch_assoc()) {
 									if(!is_null($commentRow['Rating']))									
-										echo '<strong><p>Rating:</strong> '.$commentRow["Rating"].' Stars</p>';
+										echo '<p><strong>Rating:</strong> '.$commentRow["Rating"].' Stars</p>';
 									else 
 										echo '<strong><p>Rating:</strong> No Ratings Available</p>';
-									if(!is_null($commentRow['Text']))
-	  									echo '<strong><p>Comment:</strong> '.$commentRow["Text"].'</p>
-	  								<hr class="comment-divide">';
-	  								else
+									if(!is_null($commentRow['Text'])) {
+	  									echo '<p><strong>Comment:</strong> '.$commentRow["Text"].'</p>';
+
+	  									if(!is_null($commentRow['Reply']))
+	  										echo '<p><strong>Reply:</strong>'.$commentRow["Reply"].'</p>
+	  										<hr class="comment-divide">';
+	  									else
+	  										echo '<hr class="comment-divide">';
+	  								} else {
 	  									echo '<strong><p>Comment:</strong> No Comments Available</p>
-	  								<hr class="comment-divide">';
+	  									<hr class="comment-divide">';
+	  								}
 	  							}	
 	  							echo '</div>
 	  							<div class="col-md-6">
