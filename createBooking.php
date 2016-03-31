@@ -16,19 +16,20 @@ if(isset($_GET['logout'])){
 	session_destroy();
 }
  ?>
+ <?php
+ 	$id = $_GET["id"];
+ ?>
 
  <?php
  //check if the user is already logged in and has an active session
 if(!isset($_SESSION['member_id'])){
 	//Redirect the browser to the profile editing page and kill this page.
-	header("Location: login.php");
+	header("Location: login.php?id=".$id);
 	die();
 }
  ?>
 
- <?php
- 	$id = $_GET["id"];
- ?>
+ 
 
  <?php include 'navigation.php'; ?>
 
