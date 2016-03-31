@@ -31,13 +31,13 @@ if(isset($_GET['logout'])){
 
 		die();	}
 
-	}
+	
 
 	else{
 		echo "Unable to update record";
         }	
-			
- } 
+  }		
+ 
  ?>
  
  <div class="register-page">
