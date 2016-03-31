@@ -28,7 +28,8 @@ if(isset($_GET['logout'])){
 	if($stmt->execute()){
 	
 		header("Location: adminHome.php");
-		die	}
+		die();
+	}
 	else{
 		echo "Unable to update record";
         }	
@@ -68,7 +69,7 @@ if(isset($_GET['logout'])){
 				}
 										
 				?>
-				 <input class="btn btn-default" type='submit' id='deleteBtn' name='deleteBtn' value='Delete Accomodation' /> 
+				 <input class="btn btn-default" type='submit' id='deleteBtn' name='deleteBtn' value='Delete Accommodation' /> 
 				</form>
 				</div>
 				</div>
@@ -132,7 +133,7 @@ if(isset($_GET['logout'])){
 				 
 				 <div class="col-md-4 col-md-offset-0">
 				<div class="well">
-				<h2>Accomodation's Ratings</h2>
+				<h2>Accommodation's Ratings</h2>
 				<br>
 				<style>
 				table, th, td {

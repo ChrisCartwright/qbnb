@@ -185,7 +185,7 @@ if(isset($_GET['logout'])){
 										
 				}
 					echo "</table>";
-				$query = "SELECT AVG(Rating) as average from comment join property using (Property_ID) WHERE property.Member_ID = '".$id."'";
+				$query = "SELECT ROUND(AVG(Rating),1) as average from comment join property using (Property_ID) WHERE property.Member_ID = '".$id."'";
 				$stmt = $con ->prepare($query); 
 				
 				$stmt->execute();
