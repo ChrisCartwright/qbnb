@@ -37,12 +37,12 @@ if(isset($_GET['logout'])){
  ?>
  
  <div class="register-page">
-			<h1>Accomodation Management</h1>
+			<h1>Accommodation Management</h1>
 				
 				<div class="row">
 				<div class="col-md-4">
 				<div class="well">
-				<h2>Accomodation</h2>
+				<h2>Accommodation</h2>
 				<form name='propdelete' id='propdelete' action='admineditproperty.php?id=<?=$id?>' method='post'>	
 				
 				<?php if(isset($_SESSION['admin_id'])){

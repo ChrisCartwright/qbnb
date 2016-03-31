@@ -162,7 +162,7 @@ if(isset($_GET['logout'])){
 				
 				<div class="col-md-4 col-md-offset-0">
 				<div class="well">
-				<h2>Accomodation Management</h2>
+				<h2>Accommodation Management</h2>
 				 <form name='searchprop' id='searchprop'  method='post'>	
 					<div class="form-group">
 				            <label>Property ID</label>
