@@ -159,6 +159,7 @@ if(isset($_GET['logout'])){
 				$query = "SELECT Rating from comment join property using (Property_ID) WHERE property.Member_ID = '".$id."'";
 				$stmt = $con ->prepare($query); 
 				
+				
 				$stmt->execute();
 							
 				

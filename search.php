@@ -197,10 +197,17 @@ if(isset($_GET['logout'])){
 		$count = 0;
  		while($myrow = $result->fetch_assoc()) {
  			$count = $count + 1;
- 			$commentQuery = "SELECT * FROM comment WHERE comment.Property_ID =" . $myrow["Property_ID"];
+ 			$commentQuery = "SELECT Text, Rating FROM comment WHERE comment.Property_ID =" . $myrow["Property_ID"];
+ 			$averageQuery = "SELECT ROUND(AVG(Rating),1) AS average FROM comment WHERE comment.Property_ID=".$myrow["Property_ID"];
  			if($commentStmt = $con ->prepare($commentQuery)) {
 				$commentStmt->execute();
 				$commentResult = $commentStmt->get_result();
+
+			}
+			if($averageStmt = $con ->prepare($averageQuery)) {
+				$averageStmt->execute();
+				$averageResult = $averageStmt->get_result();
+
 			}
 			else {
 				echo "get comments failed";
@@ -289,7 +296,7 @@ if(isset($_GET['logout'])){
 							<p>Pool: ' . $pool . '</p>
 							<p>Pets: ' . $pets . '</p>
 							<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample'.$count.'" aria-expanded="false" aria-controls="collapseExample">
-  								View Comments
+  								View Details
 							</button>
 						</div>
 						<div class="col-md-3" style="text-align: right">
@@ -303,14 +310,43 @@ if(isset($_GET['logout'])){
 					<hr class="comment-divide">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="collapse" id="collapseExample'.$count.'">';
+							<div class="collapse" id="collapseExample'.$count.'">
+							<div class="col-md-6">
+							<h3 style="text-decoration:underline">Ratings and Comments</h3>';
+							$firstrow = $averageResult->fetch_assoc();
+							if(!is_null($firstrow['average']))
+								echo '<strong><p>Average Rating:</strong> '.$firstrow["average"].' Stars</p>
+							<hr class="comment-divide">';
+							else
+								echo '<strong><p>Average Rating:</strong> No Ratings Available</p>';
 								while($commentRow = $commentResult->fetch_assoc()) {
-									echo '
-									<p>Rating: '.$commentRow["Rating"].' Stars</p>
-	  								<p>Comment: '.$commentRow["Text"].'</p>
+									if(!is_null($commentRow['Rating']))									
+										echo '<strong><p>Rating:</strong> '.$commentRow["Rating"].' Stars</p>';
+									else 
+										echo '<strong><p>Rating:</strong> No Ratings Available</p>';
+									if(!is_null($commentRow['Text']))
+	  									echo '<strong><p>Comment:</strong> '.$commentRow["Text"].'</p>
+	  								<hr class="comment-divide">';
+	  								else
+	  									echo '<strong><p>Comment:</strong> No Comments Available</p>
 	  								<hr class="comment-divide">';
 	  							}	
-							echo '</div>
+	  							echo '</div>
+	  							<div class="col-md-6">
+	  							<h3 style="text-decoration:underline">Points Of Interest</h3>';
+	  							if(!is_null($myrow['Events']))
+	  								echo '<p><strong>Events:</strong> '.$myrow['Events'].'</p>';
+								if(!is_null($myrow['Restaurants']))
+	  								echo'<p><strong>Restaurants:</strong> '.$myrow['Restaurants'].'</p>';
+	  							if(!is_null($myrow['Malls']))
+	  								echo'<p><strong>Malls:</strong> '.$myrow['Malls'].'</p>';
+	  							if(!is_null($myrow['Museums']))
+	  								echo'<p><strong>Museums:</strong> '.$myrow['Museums'].'</p>';
+	  							if(!is_null($myrow['Parks']))
+	  								echo'<p><strong>Parks:</strong> '.$myrow['Parks'].'</p>';
+	  							echo '</div>
+	  							
+							</div>
 						</div>
 					</div>
 				</div>'

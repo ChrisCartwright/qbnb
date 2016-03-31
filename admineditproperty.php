@@ -28,8 +28,7 @@ if(isset($_GET['logout'])){
 	if($stmt->execute()){
 	
 		header("Location: adminHome.php");
-		die();
-	}
+		die	}
 	else{
 		echo "Unable to update record";
         }	
@@ -184,8 +183,7 @@ if(isset($_GET['logout'])){
 				}
 					echo "</table>";
 				$query = "SELECT AVG(Rating) as average from comment join property using (Property_ID) WHERE Property_ID= '".$id."'";
-				$stmt = $con ->prepare($query); 
-				
+				$stmt = $con ->prepare($query);				
 				$stmt->execute();
 							
 				$result = $stmt->get_result();
