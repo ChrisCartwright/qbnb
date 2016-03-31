@@ -64,3 +64,4 @@ if(isset($_GET['logout'])){
   </div>
    </div>
     </div>
+ <?php include 'footer.php';?>	
