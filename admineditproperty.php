@@ -29,9 +29,10 @@ if(isset($_GET['logout'])){
 	
 		header("Location: adminHome.php");
 
-		die();	}
-
+		die();	
 	}
+
+	
 
 	else{
 		echo "Unable to update record";

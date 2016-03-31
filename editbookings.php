@@ -82,6 +82,7 @@ if(isset($_GET['logout'])){
 	// Execute the query
         if($stmt->execute()){
 			
+			Header("Location: property.php");
 			
         } 
 		else{
