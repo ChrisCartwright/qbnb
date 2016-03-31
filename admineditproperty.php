@@ -196,7 +196,7 @@ if(isset($_GET['logout'])){
 				echo "<h2>Average Rating: " .$myrow['average']."</h2>";
 				
 				}
-				else {echo "No Bookings";
+				else {echo "No Ratings";
 				}
 				
 									

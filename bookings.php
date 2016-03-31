@@ -18,7 +18,7 @@ if(isset($_GET['logout'])){
 			<h1>Manage Bookings</h1>
 				
 				<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-7">
 				<div class="well">
 				<h2>View My Bookings</h2>
 				<br>
@@ -47,16 +47,24 @@ if(isset($_GET['logout'])){
 					echo "<th><h3>Address</h3></th>";
 					echo "<th><h3>Start Date</h3></th>";
 					echo "<th><h3>End Date</h3></th>";
+					echo "<th><h3>Status</h3></th>";
 					echo "<th><h3>Edit</h3></th>";
 					echo "</tr>";
 					
 					while($myrow = $result->fetch_assoc()){
+						if($myrow['Status'] == 0) 
+							$status = "Requested";
+						elseif($myrow['Status'] == 1) 
+							$status = "Confirmed";
+						else 
+							$status = "Rejected";
 					
 					
 					echo "<tr>";
                    	echo"<td>".$myrow['Address_Number']." " .$myrow['Address_Name']."</td>";
 					echo"<td>".$myrow['StartDate']."</td>";
 					echo"<td>".$myrow['EndDate']."</td>";
+					echo"<td>".$status."</td>";
 					echo "<td><a href='ConsumerEditBooking.php?id=" . $myrow['Booking_ID'] . "'>Delete/Add Comment</a></td>";
 					echo "</tr>"; 
 					
