@@ -128,7 +128,7 @@ if(isset($_GET['logout'])){
  
 <div class="register-page">
 	
-<h1>Register A Property</h1>
+<h1>Edit Existing Property</h1>
 <div class="well">
 <div class="row">
 <div class="col-md-4 col-md-offset-4">
