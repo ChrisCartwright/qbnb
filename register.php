@@ -42,7 +42,7 @@ if(!isset($_SESSION['member_id'])){
 		$stmt->execute();
 		
 	
-	header("Location: index.php");
+	header("Location: property.php");
 	die();
 	}
 	else{

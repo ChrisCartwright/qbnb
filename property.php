@@ -146,7 +146,7 @@ if(isset($_GET['logout'])){
 				
 				<?php if(isset($_SESSION['member_id'])){
 				include_once 'config/connection.php'; 
-				$query = "SELECT Address_Name, Address_Number, Property_ID, Text, CNumber from property join comment using (Property_ID) WHERE property.Member_ID = ?";
+				$query = "SELECT Address_Name, Address_Number, Property_ID, Text, CNumber, reply from property join comment using (Property_ID) WHERE property.Member_ID = ?";
 				$stmt = $con ->prepare($query); 
 				$stmt->bind_Param("i", $_SESSION['member_id']);
 				$stmt->execute();
@@ -176,8 +176,13 @@ if(isset($_GET['logout'])){
 					
 					echo "<tr>";
                    	echo"<td>".$myrow['Address_Number']." " .$myrow['Address_Name']."</td>";
-					echo"<td>".$myrow['Text']."</td>";			
+					echo"<td>".$myrow['Text']."</td>";	
+					if(IS_NULL($myrow['reply'])){
 					echo "<td><a href='reply.php?id=" . $myrow['CNumber'] . "'>Comment</a></td>";
+					}
+					else{
+					echo"<td>".$myrow['reply']."</td>";	
+					}
 					echo "</tr>"; 
 					}
 					
